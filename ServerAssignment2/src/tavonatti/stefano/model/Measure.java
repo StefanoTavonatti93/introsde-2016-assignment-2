@@ -16,10 +16,10 @@ public class Measure {
 	@Column(name="value")
 	private double value;
 	
-	@Column(name="measuretype")
-	private String measureType;
+	//@Column(name="measuretype")
+	//private String measureType;
 	
-	@ManyToMany//(mappedBy="measuredefinition")
+	@ManyToMany(mappedBy="measure")
 	private List<MeasureDefinition> type;
 
 	public int getMid() {
@@ -36,14 +36,6 @@ public class Measure {
 
 	public void setValue(double value) {
 		this.value = value;
-	}
-
-	public String getMeasureType() {
-		return measureType;
-	}
-
-	public void setMeasureType(String measureType) {
-		this.measureType = measureType;
 	}
 
 }
