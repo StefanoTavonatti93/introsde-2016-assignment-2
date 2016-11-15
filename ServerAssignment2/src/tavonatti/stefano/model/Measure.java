@@ -19,7 +19,7 @@ public class Measure {
 	@Column(name="measuretype")
 	private String measureType;
 	
-	@ManyToMany(mappedBy="measuredefinition")
+	@ManyToMany//(mappedBy="measuredefinition")
 	private List<MeasureDefinition> type;
 
 	public int getMid() {
