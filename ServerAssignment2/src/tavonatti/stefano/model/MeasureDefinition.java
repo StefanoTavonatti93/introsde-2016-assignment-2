@@ -12,7 +12,23 @@ public class MeasureDefinition {
 	@Id
 	private String type;
 
-	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.PERSIST,fetch=FetchType.EAGER)
 	@XmlTransient
 	private List<Measure> measure;
+
+	public List<Measure> getMeasure() {
+		return measure;
+	}
+
+	public void setMeasure(List<Measure> measure) {
+		this.measure = measure;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 }

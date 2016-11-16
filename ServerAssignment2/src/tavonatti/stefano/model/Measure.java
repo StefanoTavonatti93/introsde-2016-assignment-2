@@ -19,8 +19,8 @@ public class Measure {
 	//@Column(name="measuretype")
 	//private String measureType;
 	
-	@ManyToMany(mappedBy="measure")
-	private List<MeasureDefinition> type;
+	@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.EAGER)
+	private MeasureDefinition type;
 
 	public int getMid() {
 		return mid;
@@ -36,6 +36,14 @@ public class Measure {
 
 	public void setValue(double value) {
 		this.value = value;
+	}
+
+	public MeasureDefinition getType() {
+		return type;
+	}
+
+	public void setType(MeasureDefinition type) {
+		this.type = type;
 	}
 
 }

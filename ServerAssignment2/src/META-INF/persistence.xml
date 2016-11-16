@@ -17,6 +17,7 @@
             <property name="eclipselink.logging.level" value="INFO" />
             <!-- we will use this to automatically add elements to our database if we modify the Java model -->
             <property name="eclipselink.ddl-generation" value="create-or-extend-tables" />
+            <!-- <property name="eclipselink.ddl-generation" value="drop-and-create-tables" />-->
             <!-- it means that automatic changes will be directly applied to the database
                  this is not reccommended, but we will use it as example only -->  
             <property name="eclipselink.ddl-generation.output-mode" value="database"/>

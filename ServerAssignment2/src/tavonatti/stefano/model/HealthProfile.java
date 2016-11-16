@@ -42,4 +42,12 @@ public class HealthProfile implements Serializable {
 		this.person = person;
 	}
 
+	public List<Measure> getMeasureList() {
+		return measureList;
+	}
+
+	public void setMeasureList(List<Measure> measureList) {
+		this.measureList = measureList;
+	}
+
 }
