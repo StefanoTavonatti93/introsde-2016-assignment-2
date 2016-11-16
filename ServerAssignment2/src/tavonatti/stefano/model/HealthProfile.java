@@ -1,12 +1,17 @@
 package tavonatti.stefano.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name="healthprofile")
-public class HealthProfile {
+@XmlRootElement(name="healthProfile")
+public class HealthProfile implements Serializable {
 	
 	@Id // defines this attributed as the one that identifies the entity
     @GeneratedValue(strategy=GenerationType.AUTO) 
@@ -14,11 +19,14 @@ public class HealthProfile {
     private int idHealthProfile;
 	
 	@OneToOne
+	@XmlTransient
 	private Person person;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@XmlTransient
 	private List<Measure> measureList;
 
+	@XmlTransient
 	public int getIdHealthProfile() {
 		return idHealthProfile;
 	}
@@ -27,6 +35,7 @@ public class HealthProfile {
 		this.idHealthProfile = idHealthProfile;
 	}
 
+	@XmlTransient
 	public Person getPerson() {
 		return person;
 	}

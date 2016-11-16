@@ -6,9 +6,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import tavonatti.stefano.dao.LifeCoachDao;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -17,9 +23,12 @@ import javax.persistence.*;
 @Entity
 @Table(name="Person")
 @NamedQuery(name="Person.findAll", query="SELECT p FROM Person p")
-public class Person {
+@XmlRootElement(name="person")
+/*@XmlAccessorType(XmlAccessType.FIELD)*/
+public class Person implements Serializable {
 	@Id // defines this attributed as the one that identifies the entity
     @GeneratedValue(strategy=GenerationType.AUTO) 
+	@TableGenerator(name="sqlite_person", table="sqlite_sequence",pkColumnName="name", valueColumnName="seq", pkColumnValue="Person")
     @Column(name="idPerson") // maps the following attribute to a column
     private int idPerson;
 	
@@ -33,6 +42,8 @@ public class Person {
     @Column(name="birthdate")
     private Date birthdate;
 	
+	//@XmlElementWrapper(name="healthProfile")
+	@XmlTransient
 	@OneToOne(mappedBy="person", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private HealthProfile healthProfile;
 
@@ -76,6 +87,7 @@ public class Person {
 		this.healthProfile = healthProfile;
 	} 
 	
+
 	public static Person getPersonById(int personId) {
         EntityManager em = LifeCoachDao.instance.createEntityManager();
         Person p = em.find(Person.class, personId);

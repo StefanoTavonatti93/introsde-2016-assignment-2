@@ -17,4 +17,9 @@ public class DBTest {
 		
 		Person.savePerson(p);
 	}
+	
+	@Test
+	public void getPeople(){
+		System.out.println("LIST SIZE: "+Person.getAll().size());
+	}
 }
