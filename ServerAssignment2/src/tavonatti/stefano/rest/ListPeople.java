@@ -1,6 +1,7 @@
 package tavonatti.stefano.rest;
 
 import java.io.BufferedOutputStream;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Date;
@@ -23,23 +24,23 @@ import tavonatti.stefano.utilities.MarshallingUtilities;
 public class ListPeople {
 
 	@GET
-    @Produces(MediaType.TEXT_HTML)
+    @Produces(MediaType.APPLICATION_JSON)
     public String listPerson() {		
 		
-		List<Person> people=Person.getAll();
-		
-		Iterator<Person> it=people.iterator();
-		
 		String result="";
+    	
+    	People p=new People();
+		p.setPerson(Person.getAll());
 		
-		while(it.hasNext()){
-			Person p=it.next();
-			result+=p.getName()+" "+p.getLastName()+"<br>";
+	
+		try {
+			result=MarshallingUtilities.marshallJSONTOString(p);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-        return "<html> " + "<title>" + "Persons List"+"</title>"
-                + "<body>" + result + "</body>"
-                + "</html> ";
+	
+        return result;
     }
 	
 	
@@ -60,7 +61,6 @@ public class ListPeople {
 			e.printStackTrace();
 		}
 		
-        return "<?xml version=\"1.0\"?>" + "<msg>" + "Hello World in REST"
-                + "</msg>\n"+result;
+        return result;
     }
 }
