@@ -23,10 +23,8 @@ public class HealthProfile implements Serializable {
 	private Person person;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@XmlTransient
 	private List<Measure> measureList;
 
-	@XmlTransient
 	public int getIdHealthProfile() {
 		return idHealthProfile;
 	}

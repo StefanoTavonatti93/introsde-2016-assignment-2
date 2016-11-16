@@ -43,7 +43,8 @@ public class ListPeople {
 	
 	
     @GET
-    @Produces(MediaType.TEXT_XML)
+    //@Produces(MediaType.TEXT_XML)
+    @Produces(MediaType.APPLICATION_XML)
     public String sayHelloXML() {
     	
     	String result="";

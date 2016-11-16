@@ -43,7 +43,6 @@ public class Person implements Serializable {
     private Date birthdate;
 	
 	//@XmlElementWrapper(name="healthProfile")
-	@XmlTransient
 	@OneToOne(mappedBy="person", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private HealthProfile healthProfile;
 
