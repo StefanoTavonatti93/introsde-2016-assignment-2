@@ -1,5 +1,6 @@
 package tavonatti.stefano.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -19,8 +20,12 @@ public class Measure {
 	//@Column(name="measuretype")
 	//private String measureType;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.EAGER)
-	private MeasureDefinition type;
+	//@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.EAGER)
+	private String type;
+	
+	@Temporal(TemporalType.DATE) // defines the precision of the date attribute
+    @Column(name="created")
+    private Date created;
 
 	public int getMid() {
 		return mid;
@@ -38,11 +43,20 @@ public class Measure {
 		this.value = value;
 	}
 
-	public MeasureDefinition getType() {
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	public String getType() {
 		return type;
 	}
 
-	public void setType(MeasureDefinition type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 

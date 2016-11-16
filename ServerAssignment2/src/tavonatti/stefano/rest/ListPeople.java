@@ -17,6 +17,7 @@ import javax.xml.bind.Marshaller;
 
 import tavonatti.stefano.model.People;
 import tavonatti.stefano.model.Person;
+import tavonatti.stefano.utilities.MarshallingUtilities;
 
 @Path("/")
 public class ListPeople {
@@ -49,21 +50,16 @@ public class ListPeople {
     	
     	String result="";
     	
-    	try {
-			JAXBContext jc=JAXBContext.newInstance(People.class);
-			Marshaller marshaller=jc.createMarshaller();
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-			StringWriter sw=new StringWriter();
-			People p=new People();
-			p.setPerson(Person.getAll());
-			marshaller.marshal(p, sw);
-			result=sw.toString();
-			
+    	People p=new People();
+		p.setPerson(Person.getAll());
+		
+		try {
+			result=MarshallingUtilities.marshallXMLToString(People.class, p);
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	
+		
         return "<?xml version=\"1.0\"?>" + "<msg>" + "Hello World in REST"
                 + "</msg>\n"+result;
     }

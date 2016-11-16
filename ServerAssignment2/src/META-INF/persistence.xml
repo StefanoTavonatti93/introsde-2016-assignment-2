@@ -4,7 +4,6 @@
 		<class>tavonatti.stefano.model.Person</class>
 		<class>tavonatti.stefano.model.HealthProfile</class>
 		<class>tavonatti.stefano.model.Measure</class>
-		<class>tavonatti.stefano.model.MeasureDefinition</class>
 	
 	<properties>
             <!-- the jdbc driver we will use to connect to the database 

@@ -1,11 +1,5 @@
 package tavonatti.stefano.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElementWrapper;
@@ -43,7 +37,8 @@ public class Person implements Serializable {
     private Date birthdate;
 	
 	//@XmlElementWrapper(name="healthProfile")
-	@OneToOne(mappedBy="person", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//@OneToOne(mappedBy="person", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToOne(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	private HealthProfile healthProfile;
 
 	public int getIdPerson() {
@@ -130,5 +125,9 @@ public class Person implements Serializable {
         em.remove(p);
         tx.commit();
         LifeCoachDao.instance.closeConnections(em);
+    }
+    
+    public void updateHP(){
+    	
     }
 }
