@@ -1,10 +1,6 @@
 package tavonatti.stefano.model;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 import tavonatti.stefano.dao.LifeCoachDao;
 
@@ -18,7 +14,6 @@ import javax.persistence.*;
 @Table(name="Person")
 @NamedQuery(name="Person.findAll", query="SELECT p FROM Person p")
 @XmlRootElement(name="person")
-/*@XmlAccessorType(XmlAccessType.FIELD)*/
 public class Person implements Serializable {
 	@Id // defines this attributed as the one that identifies the entity
     @GeneratedValue(strategy=GenerationType.AUTO) 
