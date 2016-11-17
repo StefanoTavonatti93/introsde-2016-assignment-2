@@ -90,6 +90,8 @@ public class ListPeople {
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public Person updatePerson(@PathParam("personId") int id, Person p) {
-    	return p;
+    	p.setIdPerson(id);
+    	Person.updatePerson(p);
+    	return Person.getPersonById(id);
     }
 }
