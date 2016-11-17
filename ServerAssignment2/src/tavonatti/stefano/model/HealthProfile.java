@@ -66,6 +66,9 @@ public class HealthProfile implements Serializable {
 
 	public double getHeight() {
 		
+		if(measureList==null){
+			return 0;
+		}
 		if(measureList.size()==0){
 			return 0;
 		}
@@ -79,6 +82,7 @@ public class HealthProfile implements Serializable {
 			Measure m=it.next();
 			if(m.getType().equals(MeasureType.height.toString())){
 				height=m.getValue();
+				break;
 			}
 		}
 		
@@ -90,6 +94,11 @@ public class HealthProfile implements Serializable {
 	}
 
 	public double getWeight() {
+		
+		if(measureList==null){
+			return 0;
+		}
+		
 		if(measureList.size()==0){
 			return 0;
 		}
@@ -103,6 +112,7 @@ public class HealthProfile implements Serializable {
 			Measure m=it.next();
 			if(m.getType().equals(MeasureType.weight.toString())){
 				weight=m.getValue();
+				break;
 			}
 		}
 		
