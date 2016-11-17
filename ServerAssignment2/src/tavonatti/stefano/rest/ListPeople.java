@@ -7,6 +7,7 @@ import java.util.Date;
 
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -21,6 +22,7 @@ import tavonatti.stefano.model.People;
 import tavonatti.stefano.model.Person;
 import tavonatti.stefano.utilities.MarshallingUtilities;
 import tavonatti.stefano.utilities.MeasureType;
+import tavonatti.stefano.utilities.ResultRet;
 
 @Path("/")
 public class ListPeople {
@@ -142,4 +144,20 @@ public class ListPeople {
     	
     	return p;
     }
+    
+    @DELETE
+    @Path("/{personId}")
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    public ResultRet deletePerson(@PathParam("personId") int id) {
+    	
+    	//get person by the given id
+		Person p= Person.getPersonById(id);
+		Person.removePerson(p);	
+		
+		return ResultRet.valueOK();
+	
+	}
+    
+    
 }
