@@ -132,5 +132,20 @@ public class HealthProfile implements Serializable {
         LifeCoachDao.instance.closeConnections(em);
         return h;
     } 
+	
+	/**
+	 * returns the height without checking in the measure list, used to create a new person
+	 * @return
+	 */
+	public double rawHeight(){
+		return height;
+	}
+	/**
+	 * returns the weight without checking in the measure list, used to create a new person
+	 * @return
+	 */
+	public double rawWeight(){
+		return weight;
+	}
 
 }
