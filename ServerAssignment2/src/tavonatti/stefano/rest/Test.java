@@ -30,14 +30,14 @@ public class Test {
     	m.setValue(150);
     	/*MeasureDefinition md=new MeasureDefinition();
     	md.setType("WEIGHT");*/
-    	m.setType("WEIGHT");
+    	m.setMeasureType("WEIGHT");
     	m.setCreated(new Date(System.currentTimeMillis()));
     	
     	ArrayList<Measure> a=new ArrayList<>();
     	a.add(m);
     	
     	m=new Measure();
-    	m.setType(MeasureType.weight.toString());
+    	m.setMeasureType(MeasureType.weight.toString());
     	m.setCreated(new Date(System.currentTimeMillis()+86400000));
     	m.setValue(5);
     	

@@ -4,9 +4,11 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name="measure")
+@XmlRootElement(name="measure")
 public class Measure {
 	
 	@Id // defines this attributed as the one that identifies the entity
@@ -21,9 +23,10 @@ public class Measure {
 	//private String measureType;
 	
 	//@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.EAGER)
-	private String type;
+	@Column(name="TYPE")
+	private String measureType;
 	
-	@Temporal(TemporalType.DATE) // defines the precision of the date attribute
+	@Temporal(TemporalType.TIMESTAMP) // defines the precision of the date attribute
     @Column(name="created")
     private Date created;
 
@@ -52,12 +55,13 @@ public class Measure {
 		this.created = created;
 	}
 
-	public String getType() {
-		return type;
+	public String getMeasureType() {
+		return measureType;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setMeasureType(String measureType) {
+		this.measureType = measureType;
 	}
+
 
 }

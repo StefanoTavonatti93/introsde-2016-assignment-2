@@ -80,7 +80,7 @@ public class HealthProfile implements Serializable {
 		
 		while(it.hasNext()){
 			Measure m=it.next();
-			if(m.getType().equals(MeasureType.height.toString())){
+			if(m.getMeasureType().equals(MeasureType.height.toString())){
 				height=m.getValue();
 				break;
 			}
@@ -110,7 +110,7 @@ public class HealthProfile implements Serializable {
 		
 		while(it.hasNext()){
 			Measure m=it.next();
-			if(m.getType().equals(MeasureType.weight.toString())){
+			if(m.getMeasureType().equals(MeasureType.weight.toString())){
 				weight=m.getValue();
 				break;
 			}

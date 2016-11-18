@@ -4,8 +4,12 @@ package tavonatti.stefano.rest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.ws.rs.PathParam;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -13,13 +17,16 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.xml.bind.JAXBException;
 
 import tavonatti.stefano.model.HealthProfile;
 import tavonatti.stefano.model.Measure;
 import tavonatti.stefano.model.People;
 import tavonatti.stefano.model.Person;
+import tavonatti.stefano.model.variants.MeasureHistory;
 import tavonatti.stefano.utilities.MarshallingUtilities;
 import tavonatti.stefano.utilities.MeasureType;
 import tavonatti.stefano.utilities.ResultRet;
@@ -67,7 +74,7 @@ public class ListPeople {
         return result;
     }
     
-    @GET
+   /* @GET
     @Path("/{personId}")
     @Produces(MediaType.APPLICATION_XML)
     @Consumes({MediaType.APPLICATION_XML,MediaType.TEXT_XML})
@@ -78,18 +85,21 @@ public class ListPeople {
 		
 		
 		return p;
-	}
+	}*/
     
     @GET
     @Path("/{personId}")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes({MediaType.APPLICATION_JSON})
-    public Person getPersonJSON(@PathParam("personId") int id) {
+    @Produces({MediaType.APPLICATION_XML,MediaType.TEXT_XML})
+    @Consumes({MediaType.APPLICATION_XML,MediaType.TEXT_XML})
+    public Response getPersonJSON(@PathParam("personId") int id) {
     	
     	//get person by the given id
 		Person p= Person.getPersonById(id);
 		
-		return p;
+		if(p==null)
+			return throw404();
+		
+		return throw200(p);
 	
 	}
     
@@ -131,7 +141,7 @@ public class ListPeople {
     		p.setHealthProfile(new HealthProfile());
     	
     	Measure m=new Measure();
-    	m.setType(type.toString());
+    	m.setMeasureType(type.toString());
     	m.setValue(value);
     	Date d=new Date();
     	d.setTime(System.currentTimeMillis());
@@ -159,5 +169,62 @@ public class ListPeople {
 	
 	}
     
+    @GET
+    @Path("/{personId}/{measureType}")
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    public MeasureHistory getHistory(@PathParam("personId") int id,@PathParam("measureType") String measureType) {
+    	List<Measure> meas=Person.getPersonById(id).getHealthProfile().getMeasureList();
+    	
+    	ArrayList<Measure> requestedMeasure=new ArrayList<>();
+    	if(meas!=null){
+    		Iterator<Measure> it=meas.iterator();
+    		while(it.hasNext()){
+    			Measure m=it.next();
+    			if(m.getMeasureType().equals(measureType)){
+    				requestedMeasure.add(m);
+    			}
+    		}
+    	}
+    		
+    	
+    	
+    	
+    	MeasureHistory mh=new MeasureHistory();
+    	mh.setMeasure(requestedMeasure);
+    	
+    	
+    	return mh;
+    }
+    
+    
+    @GET
+    @Path("/{personId}/{measureType}/{mid}")
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    public Response getMeasureType(@PathParam("personId") int id,@PathParam("mid") long mid, @PathParam("measureType") String measureType) {
+    	List<Measure> meas=Person.getPersonById(id).getHealthProfile().getMeasureList();
+    	
+    	if(meas!=null){
+    		Iterator<Measure> it=meas.iterator();
+    		while(it.hasNext()){
+    			Measure m=it.next();
+    			if(m.getMid()==mid){
+    				return throw200(m);
+    			}
+    		}
+    	}
+    	
+    	
+    	return throw404();
+    }
+    
+    private Response throw404(){
+    	return Response.status(Response.Status.NOT_FOUND).build();
+    }
+    
+    private Response throw200(Object o){
+    	return Response.status(Response.Status.OK).entity(o).build();
+    }
     
 }
