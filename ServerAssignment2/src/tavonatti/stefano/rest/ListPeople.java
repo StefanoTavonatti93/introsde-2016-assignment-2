@@ -27,8 +27,9 @@ import tavonatti.stefano.model.Measure;
 import tavonatti.stefano.model.People;
 import tavonatti.stefano.model.Person;
 import tavonatti.stefano.model.variants.MeasureHistory;
+import tavonatti.stefano.model.variants.MeasureType;
 import tavonatti.stefano.utilities.MarshallingUtilities;
-import tavonatti.stefano.utilities.MeasureType;
+import tavonatti.stefano.utilities.MeasureTypes;
 import tavonatti.stefano.utilities.ResultRet;
 
 @Path("/")
@@ -124,9 +125,9 @@ public class ListPeople {
     		double w=p.getHealthProfile().rawWeight();
     		
     		if(h!=0)
-    			p=saveMeasure(p, MeasureType.height, h);//if the healtrpofile exists Save the height given by the user in the post request
+    			p=saveMeasure(p, MeasureTypes.height, h);//if the healtrpofile exists Save the height given by the user in the post request
     		if(w!=0)
-    			p=saveMeasure(p, MeasureType.weight, w);//save the weight of the person
+    			p=saveMeasure(p, MeasureTypes.weight, w);//save the weight of the person
     	}
     	Person p2=Person.savePerson(p);
     	return p2;
@@ -136,7 +137,7 @@ public class ListPeople {
      * save a new measure inside the healthprofile of the given person
      * @param p
      */
-    private Person saveMeasure(Person p,MeasureType type, double value){
+    private Person saveMeasure(Person p,MeasureTypes type, double value){
     	if(p.getHealthProfile()==null)
     		p.setHealthProfile(new HealthProfile());
     	
@@ -227,4 +228,37 @@ public class ListPeople {
     	return Response.status(Response.Status.OK).entity(o).build();
     }
     
+    @POST
+    @Path("/{id}/{measureType}")
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    public Response saveMeasure(Measure measure, @PathParam("id") int id,@PathParam("measureType") String type) {
+    	Person p=Person.getPersonById(id);
+    	
+    	/* if the person does not exist return a 404 error*/
+    	if(p==null)
+    	{
+    		return throw404();
+    	}
+    	
+    	/*if the person doea not have an health progfile, create a new one*/
+    	if(p.getHealthProfile()==null)
+    		p.setHealthProfile(new HealthProfile());
+    	
+    	/*if the person do not have an array of measure, crete a new one */
+    	if(p.getHealthProfile().getMeasureList()==null)
+    		p.getHealthProfile().setMeasureList(new ArrayList<Measure>());
+    	
+    	MeasureTypes mType= MeasureTypes.valueOf(type);
+    	/* if the measure type ask by the user do not exists trhow an error*/
+    	if(mType==null)
+    		return throw404();
+    	
+    	/* add the new measure */
+    	p=saveMeasure(p , mType,measure.getValue());
+    	
+    	p=Person.updatePerson(p);
+    	
+    	return throw200(p);
+    }
 }

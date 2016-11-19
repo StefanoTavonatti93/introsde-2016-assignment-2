@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import tavonatti.stefano.dao.LifeCoachDao;
-import tavonatti.stefano.utilities.MeasureType;
+import tavonatti.stefano.utilities.MeasureTypes;
 
 @Entity
 @Table(name="healthprofile")
@@ -24,7 +24,7 @@ public class HealthProfile implements Serializable {
     @Column(name="idHealtprofile") // maps the following attribute to a column
     private int idHealthProfile;
 	
-	@OneToOne(mappedBy="healthProfile", cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@OneToOne(mappedBy="healthProfile", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@XmlTransient
 	private Person person;
 	
@@ -80,7 +80,7 @@ public class HealthProfile implements Serializable {
 		
 		while(it.hasNext()){
 			Measure m=it.next();
-			if(m.getMeasureType().equals(MeasureType.height.toString())){
+			if(m.getMeasureType().equals(MeasureTypes.height.toString())){
 				height=m.getValue();
 				break;
 			}
@@ -110,7 +110,7 @@ public class HealthProfile implements Serializable {
 		
 		while(it.hasNext()){
 			Measure m=it.next();
-			if(m.getMeasureType().equals(MeasureType.weight.toString())){
+			if(m.getMeasureType().equals(MeasureTypes.weight.toString())){
 				weight=m.getValue();
 				break;
 			}

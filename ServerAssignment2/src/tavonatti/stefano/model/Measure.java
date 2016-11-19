@@ -29,6 +29,9 @@ public class Measure {
 	@Temporal(TemporalType.TIMESTAMP) // defines the precision of the date attribute
     @Column(name="created")
     private Date created;
+	
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private HealthProfile  healthProfile;
 
 	public int getMid() {
 		return mid;
@@ -61,6 +64,14 @@ public class Measure {
 
 	public void setMeasureType(String measureType) {
 		this.measureType = measureType;
+	}
+
+	public HealthProfile getHealthProfile() {
+		return healthProfile;
+	}
+
+	public void setHealthProfile(HealthProfile healthProfile) {
+		this.healthProfile = healthProfile;
 	}
 
 

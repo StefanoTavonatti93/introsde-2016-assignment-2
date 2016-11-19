@@ -12,7 +12,7 @@ import jersey.repackaged.com.google.common.cache.Weigher;
 import tavonatti.stefano.model.HealthProfile;
 import tavonatti.stefano.model.Measure;
 import tavonatti.stefano.model.Person;
-import tavonatti.stefano.utilities.MeasureType;
+import tavonatti.stefano.utilities.MeasureTypes;
 
 @Path("/test")
 public class Test {
@@ -37,7 +37,7 @@ public class Test {
     	a.add(m);
     	
     	m=new Measure();
-    	m.setMeasureType(MeasureType.weight.toString());
+    	m.setMeasureType(MeasureTypes.weight.toString());
     	m.setCreated(new Date(System.currentTimeMillis()+86400000));
     	m.setValue(5);
     	

@@ -33,7 +33,7 @@ public class Person implements Serializable {
 	
 	//@XmlElementWrapper(name="healthProfile")
 	//@OneToOne(mappedBy="person", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@OneToOne(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private HealthProfile healthProfile;
 
 	public int getIdPerson() {

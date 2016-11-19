@@ -1,5 +1,5 @@
 package tavonatti.stefano.utilities;
 
-public enum MeasureType {
+public enum MeasureTypes {
 	height, weight,steps,bloodpressure;
 }
