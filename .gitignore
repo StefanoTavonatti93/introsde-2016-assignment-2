@@ -1,2 +1,6 @@
 ServerAssignment2/WebContent/WEB-INF/lib/*
 ServerAssignment2/.settings/*
+ServerAssignment2/WebContent/WEB-INF/classes/
+ServerAssignment2/build_ant/
+ServerAssignment2/build_old.xml
+ServerAssignment2/ivy/
