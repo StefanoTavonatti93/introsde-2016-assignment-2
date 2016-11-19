@@ -264,4 +264,18 @@ public class ListPeople {
     }
     
     
+    @PUT
+    @Path("/{id}/{measureType}/{mid}")
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    public Response updateMeasure(Measure measure,@PathParam("mid") int mid,@PathParam("id")int id,@PathParam("measureType")String measureType){
+    	//TODO checking on person
+    	Measure m=Measure.getMeasureById(mid);
+    	if(m==null)
+    		return throw404();
+    	measure.setMid(mid);
+    	return throw200(Measure.updateMeasure(measure));
+    }
+    
+    
 }

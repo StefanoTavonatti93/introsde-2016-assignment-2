@@ -6,12 +6,11 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.*;
-import javax.ws.rs.core.MediaType;
-import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import tavonatti.stefano.dao.LifeCoachDao;
+import tavonatti.stefano.model.variants.MeasureType;
 import tavonatti.stefano.utilities.MeasureTypes;
 
 @Entity
@@ -22,6 +21,7 @@ public class HealthProfile implements Serializable {
 	@Id // defines this attributed as the one that identifies the entity
     @GeneratedValue(strategy=GenerationType.AUTO) 
     @Column(name="idHealtprofile") // maps the following attribute to a column
+	@XmlTransient
     private int idHealthProfile;
 	
 	@OneToOne(mappedBy="healthProfile", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
@@ -32,14 +32,19 @@ public class HealthProfile implements Serializable {
 	@XmlTransient
 	private List<Measure> measureList;
 	
+	/* this class supports both the static and dynamic healthProfile, they are transient because in the database only the
+	 * measure hystory will be saved. The health profile is build dynamically based on the measureHystory*/
+
 	@Transient
 	private double height;
 	
 	@Transient
 	private double weight;
 	
-	//TODO add also an dinamyc health rpfile transient for db, concatenated to static one
+	@Transient
+	private List<MeasureType> measureType;
 
+	@XmlTransient
 	public int getIdHealthProfile() {
 		return idHealthProfile;
 	}
@@ -148,6 +153,40 @@ public class HealthProfile implements Serializable {
 	 */
 	public double rawWeight(){
 		return weight;
+	}
+
+	public List<MeasureType> getMeasureType() {
+		measureType=new ArrayList<MeasureType>();
+		if(getMeasureList()!=null){
+			ArrayList<Measure> measures=new ArrayList<>(getMeasureList());
+			
+			/*sort measure by date*/
+			measures.sort(new ComaparatorMeasureDate());
+			
+			MeasureTypes mt[]=MeasureTypes.values();
+			
+			/* get most recent measure per type*/
+			for(MeasureTypes type:mt){
+				Iterator<Measure> it=measures.iterator();
+				while(it.hasNext()){
+					Measure m=it.next();
+					if(m.getMeasureType().equals(type.toString())){
+						MeasureType measure=new MeasureType();
+						measure.setValue(m.getValue());
+						measure.setMeasure(m.getMeasureType());
+						
+						measureType.add(measure);
+						break;
+					}
+				}
+			}
+			
+		}
+		return measureType;
+	}
+
+	public void setMeasureType(List<MeasureType> measureType) {
+		this.measureType = measureType;
 	}
 
 }

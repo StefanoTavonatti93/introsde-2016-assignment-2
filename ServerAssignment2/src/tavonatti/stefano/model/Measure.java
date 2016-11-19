@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import tavonatti.stefano.dao.LifeCoachDao;
+
 @Entity
 @Table(name="measure")
 @XmlRootElement(name="measure")
@@ -72,6 +74,23 @@ public class Measure {
 
 	public void setHealthProfile(HealthProfile healthProfile) {
 		this.healthProfile = healthProfile;
+	}
+	
+	public static Measure updateMeasure(Measure m){
+		EntityManager em = LifeCoachDao.instance.createEntityManager(); 
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        m=em.merge(m);
+        tx.commit();
+        LifeCoachDao.instance.closeConnections(em);
+        return m;
+	}
+	
+	public static Measure getMeasureById(int mid){
+		EntityManager em = LifeCoachDao.instance.createEntityManager();
+		Measure m=em.find(Measure.class, mid);
+		LifeCoachDao.instance.closeConnections(em);
+		return m;	
 	}
 
 
