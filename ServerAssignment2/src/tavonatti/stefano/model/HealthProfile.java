@@ -37,6 +37,8 @@ public class HealthProfile implements Serializable {
 	
 	@Transient
 	private double weight;
+	
+	//TODO add also an dinamyc health rpfile transient for db, concatenated to static one
 
 	public int getIdHealthProfile() {
 		return idHealthProfile;

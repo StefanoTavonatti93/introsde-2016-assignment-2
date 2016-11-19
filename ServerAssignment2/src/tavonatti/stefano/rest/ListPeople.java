@@ -28,11 +28,12 @@ import tavonatti.stefano.model.People;
 import tavonatti.stefano.model.Person;
 import tavonatti.stefano.model.variants.MeasureHistory;
 import tavonatti.stefano.model.variants.MeasureType;
+import tavonatti.stefano.model.variants.MeasureTypeList;
 import tavonatti.stefano.utilities.MarshallingUtilities;
 import tavonatti.stefano.utilities.MeasureTypes;
 import tavonatti.stefano.utilities.ResultRet;
 
-@Path("/")
+@Path("/person")
 public class ListPeople {
 
 	@GET
@@ -261,4 +262,6 @@ public class ListPeople {
     	
     	return throw200(p);
     }
+    
+    
 }
