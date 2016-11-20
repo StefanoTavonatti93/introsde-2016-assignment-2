@@ -48,13 +48,8 @@ public class ListPeople {
     	People p=new People();
 		p.setPerson(Person.getAll());
 		
-		try {
-			result=MarshallingUtilities.marshallXMLToString(People.class, p);
-		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
+		/*if the request do not contain the query parameters return all th people*/
 		if(measureType!=null){
 			if(measureType!=""){
 				List<Person> person=p.getPerson();
@@ -64,6 +59,7 @@ public class ListPeople {
 					
 					boolean remove=true;
 					
+					/*chek if the people measures respect the qeury*/
 					for(MeasureType m:mt){
 						if(m.getMeasure().equals(measureType)){
 							if(m.getValue()>=min&&m.getValue()<=max){
@@ -73,6 +69,7 @@ public class ListPeople {
 						}
 					}
 					
+					/*remove piople wich do not satisfies the query*/
 					if(remove){
 						person.remove(i);
 					}
