@@ -17,6 +17,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -35,31 +36,12 @@ import tavonatti.stefano.utilities.ResultRet;
 
 @Path("/person")
 public class ListPeople {
-
-	@GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public String listPeople() {		
-		
-		String result="";
-    	
-    	People p=new People();
-		p.setPerson(Person.getAll());
-		
-	
-		try {
-			result=MarshallingUtilities.marshallJSONTOString(p);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
-        return result;
-    }
 	
 	
     @GET
-    @Produces(MediaType.APPLICATION_XML)
-    public String ListPeople() {
+    @Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+    public People ListPeople(@QueryParam("measureType") String measureType, @QueryParam("min") double min,@QueryParam("max") double max) {
     	
     	String result="";
     	
@@ -73,7 +55,32 @@ public class ListPeople {
 			e.printStackTrace();
 		}
 		
-        return result;
+		if(measureType!=null){
+			if(measureType!=""){
+				List<Person> person=p.getPerson();
+				for(int i=0;i<person.size();i++){
+					Person pers=person.get(i);
+					List<MeasureType> mt=pers.getHealthProfile().getMeasureType();
+					
+					boolean remove=true;
+					
+					for(MeasureType m:mt){
+						if(m.getMeasure().equals(measureType)){
+							if(m.getValue()>=min&&m.getValue()<=max){
+								remove=false;
+								break;
+							}
+						}
+					}
+					
+					if(remove){
+						person.remove(i);
+					}
+				}
+			}
+		}
+		
+        return p;
     }
     
    /* @GET
