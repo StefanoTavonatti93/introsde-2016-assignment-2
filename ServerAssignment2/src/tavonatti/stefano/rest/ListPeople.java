@@ -2,6 +2,9 @@ package tavonatti.stefano.rest;
 
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -69,7 +72,7 @@ public class ListPeople {
 						}
 					}
 					
-					/*remove piople wich do not satisfies the query*/
+					/*remove people wich do not satisfies the query*/
 					if(remove){
 						person.remove(i);
 					}
@@ -80,18 +83,6 @@ public class ListPeople {
         return p;
     }
     
-   /* @GET
-    @Path("/{personId}")
-    @Produces(MediaType.APPLICATION_XML)
-    @Consumes({MediaType.APPLICATION_XML,MediaType.TEXT_XML})
-    public Person getPersonXML(@PathParam("personId") int id) {
-    	
-    	//get person by the given id
-		Person p= Person.getPersonById(id);
-		
-		
-		return p;
-	}*/
     
     @GET
     @Path("/{personId}")
@@ -179,8 +170,33 @@ public class ListPeople {
     @Path("/{personId}/{measureType}")
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-    public MeasureHistory getHistory(@PathParam("personId") int id,@PathParam("measureType") String measureType) {
+    public MeasureHistory getHistory(@PathParam("personId") int id,@PathParam("measureType") String measureType,
+    		@QueryParam("before") String beforeDate,@QueryParam("after") String afterDate) {
     	List<Measure> meas=Person.getPersonById(id).getHealthProfile().getMeasureList();
+    	
+    	Date before=null;
+    	Date after=null;
+    	
+    	DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+    	
+    	/*convert string into dates*/
+    	if(beforeDate!=null)
+    		if(!beforeDate.equals("")){
+    			try {
+					before=format.parse(beforeDate);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+    		}
+    	
+    	if(afterDate!=null)
+    		if(!afterDate.equals("")){
+    			try {
+					after=format.parse(afterDate);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+    		}
     	
     	ArrayList<Measure> requestedMeasure=new ArrayList<>();
     	if(meas!=null){
@@ -188,7 +204,18 @@ public class ListPeople {
     		while(it.hasNext()){
     			Measure m=it.next();
     			if(m.getMeasureType().equals(measureType)){
-    				requestedMeasure.add(m);
+    				
+    				/*if before and after date are setted, check the measure with satifies the requirment*/
+    				if(before!=null && after!=null){
+    					
+    					if(m.getCreated().getTime()>=after.getTime() && m.getCreated().getTime()<=before.getTime()){
+    						requestedMeasure.add(m);
+    					}
+    				}
+    				else{
+    					/*if dates are not setted return all measures*/
+    					requestedMeasure.add(m);
+    				}
     			}
     		}
     	}
@@ -196,7 +223,7 @@ public class ListPeople {
     	
     	
     	
-    	MeasureHistory mh=new MeasureHistory();
+    	MeasureHistory mh=new MeasureHistory();//send the measueres in the right format
     	mh.setMeasure(requestedMeasure);
     	
     	
