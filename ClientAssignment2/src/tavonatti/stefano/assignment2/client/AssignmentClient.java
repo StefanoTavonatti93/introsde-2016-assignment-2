@@ -7,6 +7,8 @@ import java.net.URI;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -42,6 +44,7 @@ import tavonatti.stefano.model.HealthProfile;
 import tavonatti.stefano.model.People;
 import tavonatti.stefano.model.Person;
 import tavonatti.stefano.model.variants.MeasureType;
+import tavonatti.stefano.model.variants.MeasureTypeList;
 import tavonatti.stefano.utilities.MarshallingUtilities;
 
 public class AssignmentClient {
@@ -57,12 +60,12 @@ public class AssignmentClient {
         service = client.target(getBaseURI());
 		//System.out.println(service.path("person").request().accept(MediaType.APPLICATION_XML).get().readEntity(String.class));
         
-        /*R1*/
+        /*R3.1*/
         Response peopleResponse=makeRequest("person", MediaType.APPLICATION_XML);//make call
         People people=peopleResponse.readEntity(People.class);//parse response
-        printResponseStatusXML("1",people.getPerson().size()>2?"OK":"ERROR", peopleResponse,people);//print status
+        printResponseStatusXML("3.1",people.getPerson().size()>2?"OK":"ERROR", peopleResponse,people);//print status
         
-        /*R2*/
+        /*R3.2*/
         int id=people.getPerson().size()>0?people.getPerson().get(0).getIdPerson():0;
         Response person1R=makeRequest("person/"+id, MediaType.APPLICATION_XML);
         Person person1=null;
@@ -72,15 +75,15 @@ public class AssignmentClient {
         	person1=person1R.readEntity(Person.class);
         	res="OK";
         }
-        printResponseStatusXML("2", "OK" , person1R, person1);
+        printResponseStatusXML("3.2", "OK" , person1R, person1);
         
-        /*R3*/
+        /*R3.3*/
         String name="roberto";
         person1.setFirstname(name);
         Response editName=service.path("person/"+id).request().accept(MediaType.APPLICATION_XML).put(Entity.entity(person1, MediaType.APPLICATION_XML));
-        printResponseStatusXML("3", person1.getFirstname().equals(name)?"OK":"ERROR", editName, editName.readEntity(Person.class));
+        printResponseStatusXML("3.3", person1.getFirstname().equals(name)?"OK":"ERROR", editName, editName.readEntity(Person.class));
         
-        /*R4*/
+        /*R3.4*/
         Person norris=new Person();
         norris.setFirstname("Chuck");
         norris.setLastname("Norris");
@@ -106,13 +109,28 @@ public class AssignmentClient {
         	idNorris=norrisResult.getIdPerson();
         }
         
-        printResponseStatusXML("4", norrisResult!=null?"OK":"ERROR", norrisResponse, norrisResult);
+        printResponseStatusXML("3.4", norrisResult!=null?"OK":"ERROR", norrisResponse, norrisResult);
         
-        /*R5*/
+        /*R3.5*/
         
         Response deleteNorris=service.path("person/"+idNorris).request().accept(MediaType.APPLICATION_XML).delete();
         Response checkNorris=makeRequest("person/"+idNorris, MediaType.APPLICATION_XML);
-        printResponseStatusXML("5", checkNorris.getStatus()==404?"OK":"ERROR", checkNorris, null);
+        printResponseStatusXML("3.5", checkNorris.getStatus()==404?"OK":"ERROR", checkNorris, null);
+        
+        /*R3.6*/
+        
+        Response measureTypeResponse=makeRequest("measureTypes", MediaType.APPLICATION_XML);
+        MeasureTypeList mlist=null;
+        
+        List<String> measureTypes=new ArrayList<>();
+        if(measureTypeResponse.getStatus()==200||measureTypeResponse.getStatus()==202){
+        	mlist=measureTypeResponse.readEntity(MeasureTypeList.class);
+        	measureTypes=mlist.getMeasureType();
+        }
+        
+        printResponseStatusXML("3.6", measureTypes.size()>2?"OK":"ERROR", measureTypeResponse, mlist);
+        
+        /*R3.7*/
 	}
 	
 	public static void main(String args[]){
