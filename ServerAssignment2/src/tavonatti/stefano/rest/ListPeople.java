@@ -86,8 +86,8 @@ public class ListPeople {
     
     @GET
     @Path("/{personId}")
-    @Produces({MediaType.APPLICATION_XML,MediaType.TEXT_XML})
-    @Consumes({MediaType.APPLICATION_XML,MediaType.TEXT_XML})
+    @Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
     public Response getPersonJSON(@PathParam("personId") int id) {
     	
     	//get person by the given id

@@ -2,6 +2,8 @@ package tavonatti.stefano.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import tavonatti.stefano.dao.LifeCoachDao;
 
 import java.io.Serializable;
@@ -29,6 +31,7 @@ public class Person implements Serializable {
 	
 	@Temporal(TemporalType.DATE) // defines the precision of the date attribute
     @Column(name="birthdate")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date birthdate;
 	
 	//@XmlElementWrapper(name="healthProfile")

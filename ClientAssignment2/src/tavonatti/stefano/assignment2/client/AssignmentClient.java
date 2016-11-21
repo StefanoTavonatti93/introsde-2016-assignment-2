@@ -169,6 +169,7 @@ public class AssignmentClient {
         Response measureResponse=makeRequest("person/"+id+"/"+storedMeasureType+"/"+storedMid, MediaType.APPLICATION_XML);
         printResponseStatusXML("3.8", measureResponse.getStatus()==200?"OK":"ERROR", measureResponse, measureResponse.readEntity(Measure.class));
         
+        
 	}
 	
 	public static void main(String args[]){

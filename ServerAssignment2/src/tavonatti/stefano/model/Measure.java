@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import tavonatti.stefano.dao.LifeCoachDao;
 
 @Entity
@@ -30,6 +32,7 @@ public class Measure {
 	
 	@Temporal(TemporalType.TIMESTAMP) // defines the precision of the date attribute
     @Column(name="created")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date created;
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
