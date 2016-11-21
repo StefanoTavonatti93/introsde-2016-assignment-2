@@ -8,6 +8,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ws.rs.client.Client;
@@ -41,8 +42,10 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import tavonatti.stefano.model.HealthProfile;
+import tavonatti.stefano.model.Measure;
 import tavonatti.stefano.model.People;
 import tavonatti.stefano.model.Person;
+import tavonatti.stefano.model.variants.MeasureHistory;
 import tavonatti.stefano.model.variants.MeasureType;
 import tavonatti.stefano.model.variants.MeasureTypeList;
 import tavonatti.stefano.utilities.MarshallingUtilities;
@@ -66,7 +69,7 @@ public class AssignmentClient {
         printResponseStatusXML("3.1",people.getPerson().size()>2?"OK":"ERROR", peopleResponse,people);//print status
         
         /*R3.2*/
-        int id=people.getPerson().size()>0?people.getPerson().get(0).getIdPerson():0;
+        int id=people.getPerson().size()>0?people.getPerson().get(0).getIdPerson():0;//id of the first person
         Response person1R=makeRequest("person/"+id, MediaType.APPLICATION_XML);
         Person person1=null;
         String res="ERROR";
@@ -101,6 +104,7 @@ public class AssignmentClient {
         norris.setHealthProfile(hp);
         Person norrisResult=null;
         
+        /*save chuck norris*/
         Response norrisResponse=service.path("/person").request().accept(MediaType.APPLICATION_XML).post(Entity.entity(norris, MediaType.APPLICATION_XML_TYPE));
         int idNorris=0;
         
@@ -112,8 +116,9 @@ public class AssignmentClient {
         printResponseStatusXML("3.4", norrisResult!=null?"OK":"ERROR", norrisResponse, norrisResult);
         
         /*R3.5*/
-        
+        /*delete chuck norris*/
         Response deleteNorris=service.path("person/"+idNorris).request().accept(MediaType.APPLICATION_XML).delete();
+        /*check if chuck norris has been deleted*/
         Response checkNorris=makeRequest("person/"+idNorris, MediaType.APPLICATION_XML);
         printResponseStatusXML("3.5", checkNorris.getStatus()==404?"OK":"ERROR", checkNorris, null);
         
@@ -125,12 +130,45 @@ public class AssignmentClient {
         List<String> measureTypes=new ArrayList<>();
         if(measureTypeResponse.getStatus()==200||measureTypeResponse.getStatus()==202){
         	mlist=measureTypeResponse.readEntity(MeasureTypeList.class);
-        	measureTypes=mlist.getMeasureType();
+        	measureTypes=mlist.getMeasureType();//save the measure array
         }
         
         printResponseStatusXML("3.6", measureTypes.size()>2?"OK":"ERROR", measureTypeResponse, mlist);
         
         /*R3.7*/
+        
+        Iterator<String> it=measureTypes.iterator();
+        
+        boolean measureError=true;//false if at leat one measuretye has at least one measure
+        String storedMeasureType="";
+        int storedMid=0;
+        
+        Response rep=null;
+        
+        MeasureHistory measureHistory=null;
+        
+        /*make a request for every type*/
+        while(it.hasNext()){
+        	String type=it.next();
+        	rep=makeRequest("person/"+id+"/"+type, MediaType.APPLICATION_XML);
+        	measureHistory=rep.readEntity(MeasureHistory.class);
+        	if(measureHistory!=null){
+        		if(measureHistory.getMeasure()!=null)
+	        		if(measureHistory.getMeasure().size()>=1){
+	        			measureError=false;
+	        			storedMeasureType=type;
+	        			storedMid=measureHistory.getMeasure().get(0).getMid();
+	        		}
+        	}
+       
+        }
+        
+        printResponseStatusXML("3.7", measureError?"ERROR":"OK", rep, null);
+        
+        /*R3.8*/
+        Response measureResponse=makeRequest("person/"+id+"/"+storedMeasureType+"/"+storedMid, MediaType.APPLICATION_XML);
+        printResponseStatusXML("3.8", measureResponse.getStatus()==200?"OK":"ERROR", measureResponse, measureResponse.readEntity(Measure.class));
+        
 	}
 	
 	public static void main(String args[]){
