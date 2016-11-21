@@ -4,3 +4,13 @@ ServerAssignment2/WebContent/WEB-INF/classes/
 ServerAssignment2/build_ant/
 ServerAssignment2/build_old.xml
 ServerAssignment2/ivy/
+
+ClientAssignment2/lib/*
+ClientAssignment2/.settings/*
+ClientAssignment2/WebContent/WEB-INF/classes/
+ClientAssignment2/build_ant/
+ClientAssignment2/build_old.xml
+ClientAssignment2/ivy/
+ClientAssignment2/.classpath
+ClientAssignment2/.gitignore
+ClientAssignment2/.project
