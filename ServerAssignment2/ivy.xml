@@ -83,6 +83,11 @@
         
         <!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency org="junit" name="junit" rev="4.12"/>
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<dependency org="org.postgresql" name="postgresql" rev="9.4.1212.jre7"/>
+		
+		
+		
         
             
         
