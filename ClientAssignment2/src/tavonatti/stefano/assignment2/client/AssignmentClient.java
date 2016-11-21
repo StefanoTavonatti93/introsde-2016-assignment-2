@@ -169,6 +169,33 @@ public class AssignmentClient {
         Response measureResponse=makeRequest("person/"+id+"/"+storedMeasureType+"/"+storedMid, MediaType.APPLICATION_XML);
         printResponseStatusXML("3.8", measureResponse.getStatus()==200?"OK":"ERROR", measureResponse, measureResponse.readEntity(Measure.class));
         
+        /*R3.9*/
+        //Reading the measure istory of first person
+        measureResponse=makeRequest("person/"+id+"/"+storedMeasureType,MediaType.APPLICATION_XML);
+        MeasureHistory storedMeasureHistory=measureResponse.readEntity(MeasureHistory.class);
+        
+        printResponseStatusXML("3.9 GET person/"+id+"/"+storedMeasureType, "OK", measureResponse, storedMeasureHistory);
+        
+        
+        Measure measure=new Measure();
+        measure.setValue(72);
+        measure.setMeasureType(storedMeasureType);
+        try {
+			measure.setCreated(format.parse("2011-12-09"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    
+        //adding new measure
+        Response adding=service.path("person/"+id+"/"+storedMeasureType).request().accept(MediaType.APPLICATION_XML).post(Entity.entity(measure, MediaType.APPLICATION_XML));
+        //printResponseStatusXML("3.9 POST person/"+id+"/"+storedMeasureType, "OK", adding, adding.readEntity(String.class));
+        Response checkNewMeasure=makeRequest("person/"+id+"/"+storedMeasureType, MediaType.APPLICATION_XML);
+        
+        //check if the number of measure is increased
+        MeasureHistory newMeasureHistory=checkNewMeasure.readEntity(MeasureHistory.class);
+        printResponseStatusXML("3.9 GET person/"+id+"/"+storedMeasureType, newMeasureHistory.getMeasure().size()>storedMeasureHistory.getMeasure().size()?"OK":"ERROR", checkNewMeasure, newMeasureHistory);
+        
         
 	}
 	
@@ -193,6 +220,8 @@ public class AssignmentClient {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		
+		//TODO LOG - return measure not person -
 	}
 	
 	private Response makeRequest(String url,String type){
