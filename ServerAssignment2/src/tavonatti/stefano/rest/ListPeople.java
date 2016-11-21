@@ -104,10 +104,22 @@ public class ListPeople {
     @Path("/{personId}")
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-    public Person updatePerson(@PathParam("personId") int id, Person p) {
+    public Response updatePerson(@PathParam("personId") int id, Person p) {
+    	
+    	//load stored person
+    	Person stored=Person.getPersonById(id);
+    	
+    	if(stored==null)
+    	{
+    		return throw404();//if the person do not exists trhow a 404 error
+    	}
     	p.setIdPerson(id);
-    	Person.updatePerson(p);
-    	return Person.getPersonById(id);
+    	/*update the stored person*/
+    	stored.setBirthdate(p.getBirthdate());
+    	stored.setFirstname(p.getFirstname());
+    	stored.setLastname(p.getLastname());
+    	Person.updatePerson(stored);
+    	return throw200(Person.getPersonById(id));
     }
     
     @POST
