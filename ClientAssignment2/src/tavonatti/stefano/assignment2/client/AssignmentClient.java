@@ -41,6 +41,7 @@ import org.xml.sax.SAXException;
 import tavonatti.stefano.model.HealthProfile;
 import tavonatti.stefano.model.People;
 import tavonatti.stefano.model.Person;
+import tavonatti.stefano.model.variants.MeasureType;
 import tavonatti.stefano.utilities.MarshallingUtilities;
 
 public class AssignmentClient {
@@ -106,6 +107,12 @@ public class AssignmentClient {
         }
         
         printResponseStatusXML("4", norrisResult!=null?"OK":"ERROR", norrisResponse, norrisResult);
+        
+        /*R5*/
+        
+        Response deleteNorris=service.path("person/"+idNorris).request().accept(MediaType.APPLICATION_XML).delete();
+        Response checkNorris=makeRequest("person/"+idNorris, MediaType.APPLICATION_XML);
+        printResponseStatusXML("5", checkNorris.getStatus()==404?"OK":"ERROR", checkNorris, null);
 	}
 	
 	public static void main(String args[]){
