@@ -4,6 +4,9 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.net.URI;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -35,6 +38,7 @@ import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import tavonatti.stefano.model.HealthProfile;
 import tavonatti.stefano.model.People;
 import tavonatti.stefano.model.Person;
 import tavonatti.stefano.utilities.MarshallingUtilities;
@@ -44,6 +48,7 @@ public class AssignmentClient {
 	private ClientConfig clientConfig ;
 	private Client client;
 	private WebTarget service;
+	private DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
 	
 	public AssignmentClient(String args[]){
 		clientConfig = new ClientConfig();
@@ -70,11 +75,37 @@ public class AssignmentClient {
         
         /*R3*/
         String name="roberto";
-        person1.setName(name);
+        person1.setFirstname(name);
         Response editName=service.path("person/"+id).request().accept(MediaType.APPLICATION_XML).put(Entity.entity(person1, MediaType.APPLICATION_XML));
-        printResponseStatusXML("3", person1.getName().equals(name)?"OK":"ERROR", editName, editName.readEntity(Person.class));
+        printResponseStatusXML("3", person1.getFirstname().equals(name)?"OK":"ERROR", editName, editName.readEntity(Person.class));
         
+        /*R4*/
+        Person norris=new Person();
+        norris.setFirstname("Chuck");
+        norris.setLastname("Norris");
         
+        try {
+			norris.setBirthdate(format.parse("1945-01-01"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+        
+        HealthProfile hp=new HealthProfile();
+        hp.setHeight(172);
+        hp.setWeight(78.9);
+        
+        norris.setHealthProfile(hp);
+        Person norrisResult=null;
+        
+        Response norrisResponse=service.path("/person").request().accept(MediaType.APPLICATION_XML).post(Entity.entity(norris, MediaType.APPLICATION_XML_TYPE));
+        int idNorris=0;
+        
+        if(norrisResponse.getStatus()==200 || norrisResponse.getStatus()==201 || norrisResponse.getStatus()==202){
+        	norrisResult=norrisResponse.readEntity(Person.class);
+        	idNorris=norrisResult.getIdPerson();
+        }
+        
+        printResponseStatusXML("4", norrisResult!=null?"OK":"ERROR", norrisResponse, norrisResult);
 	}
 	
 	public static void main(String args[]){

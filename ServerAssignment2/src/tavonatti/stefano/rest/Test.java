@@ -22,8 +22,8 @@ public class Test {
     public String sayHelloXML() {
     	
     	Person p=new Person();
-    	p.setName("Paolo");
-    	p.setLastName("Bitta");
+    	p.setFirstname("Paolo");
+    	p.setLastname("Bitta");
     	p.setBirthdate(new Date(System.currentTimeMillis()));
     	HealthProfile hp=new HealthProfile();
     	Measure m=new Measure();
