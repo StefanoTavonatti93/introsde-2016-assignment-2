@@ -465,7 +465,7 @@ public class AssignmentClient {
 	
 	private static URI getBaseURI() {
         return UriBuilder.fromUri(
-                "http://localhost:8080/ServerAssignment2").build();
+                "https://ste-introsde-assignment-2.herokuapp.com").build();
     }
 	
 	private void printResponseStatusXML(String reqNumber,String result,Response response,Object body){
