@@ -325,7 +325,11 @@ public class ListPeople {
     	if(m==null)
     		return throw404();
     	measure.setMid(mid);
-    	return throw200(Measure.updateMeasure(measure));
+    	if(measure.getCreated()!=null)
+    		m.setCreated(measure.getCreated());
+    	m.setValue(measure.getValue());
+    	m.setMeasureType(measureType);
+    	return throw200(Measure.updateMeasure(m));
     }
     
     

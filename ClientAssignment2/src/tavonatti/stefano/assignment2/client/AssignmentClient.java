@@ -189,13 +189,23 @@ public class AssignmentClient {
     
         //adding new measure
         Response adding=service.path("person/"+id+"/"+storedMeasureType).request().accept(MediaType.APPLICATION_XML).post(Entity.entity(measure, MediaType.APPLICATION_XML));
-        //printResponseStatusXML("3.9 POST person/"+id+"/"+storedMeasureType, "OK", adding, adding.readEntity(String.class));
+        
+        Measure storedMeasure=adding.readEntity(Measure.class);
+        
+        printResponseStatusXML("3.9 POST person/"+id+"/"+storedMeasureType, "OK", adding,storedMeasure );
         Response checkNewMeasure=makeRequest("person/"+id+"/"+storedMeasureType, MediaType.APPLICATION_XML);
         
         //check if the number of measure is increased
         MeasureHistory newMeasureHistory=checkNewMeasure.readEntity(MeasureHistory.class);
         printResponseStatusXML("3.9 GET person/"+id+"/"+storedMeasureType, newMeasureHistory.getMeasure().size()>storedMeasureHistory.getMeasure().size()?"OK":"ERROR", checkNewMeasure, newMeasureHistory);
         
+        /*R3.10*/
+        Measure updatedMeasure=new Measure();
+        updatedMeasure.setValue(90);
+        Response putMeasure=service.path("person/"+id+"/"+storedMeasureType+"/"+storedMeasure.getMid()).request().put(Entity.entity(updatedMeasure, MediaType.APPLICATION_XML));
+        Measure newMeasure=putMeasure.readEntity(Measure.class);
+        
+        printResponseStatusXML("3.10 PUT"+"person/"+id+"/"+storedMeasureType+"/"+storedMeasure.getMid(), newMeasure.getValue()==90?"OK":"ERROR", putMeasure, newMeasure);
         
 	}
 	
