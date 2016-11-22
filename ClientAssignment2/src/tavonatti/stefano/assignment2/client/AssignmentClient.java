@@ -66,6 +66,8 @@ public class AssignmentClient {
 	
 	public AssignmentClient(String args[]){
 		
+		/*the server url is in the first argument
+		 * if the argument does not exists the default adress will be used*/
 		if(args.length>0){
         	url_base=args[0];
         }
@@ -74,10 +76,9 @@ public class AssignmentClient {
 		clientConfig = new ClientConfig();
         client = ClientBuilder.newClient(clientConfig);
         service = client.target(getBaseURI());
-		//System.out.println(service.path("person").request().accept(MediaType.APPLICATION_XML).get().readEntity(String.class));
+		
         
-        
-        /*populate db before launching the test, heroku rest the DB every time the web application restart*/
+        /*populate db before launching the test, heroku reset the DB every time the web application restart*/
         popolateDB();
         
         /*inizializa outputFile*/
@@ -185,7 +186,7 @@ public class AssignmentClient {
         
         Iterator<String> it=measureTypes.iterator();
         
-        boolean measureError=true;//false if at leat one measuretye has at least one measure
+        boolean measureError=true;//false if at least one measureType has at least one measure
         String storedMeasureType="";
         int storedMid=0;
         
@@ -216,7 +217,7 @@ public class AssignmentClient {
         printResponseStatusJSON("R7 person/"+id+"/"+storedMeasureType+"/"+storedMid, measureResponse.getStatus()==200?"OK":"ERROR", measureResponse, measureResponse.readEntity(Measure.class));
         
         /*R3.9*/
-        //Reading the measure istory of first person
+        //Reading the measure history of first person
         measureResponse=makeRequest("person/"+id+"/"+storedMeasureType,MediaType.APPLICATION_JSON);
         MeasureHistory storedMeasureHistory=measureResponse.readEntity(MeasureHistory.class);
         
@@ -357,7 +358,7 @@ public class AssignmentClient {
         
         Iterator<String> it=measureTypes.iterator();
         
-        boolean measureError=true;//false if at leat one measuretye has at least one measure
+        boolean measureError=true;//false if at least one measureType has at least one measure
         String storedMeasureType="";
         int storedMid=0;
         
@@ -388,7 +389,7 @@ public class AssignmentClient {
         printResponseStatusXML("R7 person/"+id+"/"+storedMeasureType+"/"+storedMid, measureResponse.getStatus()==200?"OK":"ERROR", measureResponse, measureResponse.readEntity(Measure.class));
         
         /*R3.9*/
-        //Reading the measure istory of first person
+        //Reading the measure history of first person
         measureResponse=makeRequest("person/"+id+"/"+storedMeasureType,MediaType.APPLICATION_XML);
         MeasureHistory storedMeasureHistory=measureResponse.readEntity(MeasureHistory.class);
         
@@ -452,6 +453,8 @@ public class AssignmentClient {
 	}
 	
 	public void popolateDB(){
+		
+		/*Create a new person*/
 		makeRequest("person/", MediaType.APPLICATION_XML);
 		
 		Person p=new Person();
@@ -470,11 +473,13 @@ public class AssignmentClient {
 			e.printStackTrace();
 		}
 		p.setHealthProfile(hp);
+		
+		/*POST request for saving the person*/
 		Response r=service.path("/person").request().accept(MediaType.APPLICATION_XML).post(Entity.entity(p, MediaType.APPLICATION_XML_TYPE));
 		Person bitta=r.readEntity(Person.class);
 		Response r2=service.path("/person/"+bitta.getIdPerson()+"/weight").request().accept(MediaType.APPLICATION_XML).post(Entity.entity(m, MediaType.APPLICATION_XML_TYPE));
 		
-		
+		/*Create some other Person object and save them*/
 		p=new Person();
 		p.setFirstname("Donato");
 		p.setLastname("Cavallo");

@@ -8,7 +8,7 @@ import tavonatti.stefano.model.Measure;
 
 @XmlRootElement(name="measureHistory")
 /**
- * this calss is used by the call that asks for the measure history in order to display the elements in the right way
+ * this class is used by the call that asks for the measure history in order to display the elements in the right way
  * @author stefano
  *
  */

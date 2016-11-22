@@ -9,7 +9,7 @@ import javax.ws.rs.core.MediaType;
 import tavonatti.stefano.model.variants.MeasureTypeList;
 
 /**
- * this call return all the measure type aailable in the server
+ * this call returns all the measure type available in the server
  * @author stefano
  *
  */

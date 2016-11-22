@@ -33,7 +33,7 @@ public class HealthProfile implements Serializable {
 	private List<Measure> measureList;
 	
 	/* this class supports both the static and dynamic healthProfile, they are transient because in the database only the
-	 * measure hystory will be saved. The health profile is build dynamically based on the measureHystory*/
+	 * measure history will be saved. The health profile is build dynamically based on the measureHystory*/
 
 	@Transient
 	private double height;
