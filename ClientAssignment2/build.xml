@@ -102,5 +102,18 @@
 			</classpath>
 		</java>
 	</target>
+    
+    <target name="execute.client.simone" depends="compile">
+		<echo message="Executing client"/>
+		<java classname="tavonatti.stefano.assignment2.client.AssignmentClient" classpath="${build.dir}">
+            <arg value="https://scalco-introsde-assignment-2.herokuapp.com/"/>
+			<classpath>
+				<fileset dir="${lib.dir}">
+					<include name="**/*.jar" />
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+		</java>
+	</target>
 
 </project> 

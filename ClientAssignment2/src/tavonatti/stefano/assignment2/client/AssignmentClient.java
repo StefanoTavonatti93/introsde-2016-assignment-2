@@ -66,14 +66,16 @@ public class AssignmentClient {
 	
 	public AssignmentClient(String args[]){
 		
+		if(args.length>0){
+        	url_base=args[0];
+        }
+		
 		System.out.println("SERVER URL: "+url_base+"\n\n");
 		clientConfig = new ClientConfig();
         client = ClientBuilder.newClient(clientConfig);
         service = client.target(getBaseURI());
 		//System.out.println(service.path("person").request().accept(MediaType.APPLICATION_XML).get().readEntity(String.class));
-        if(args.length>0){
-        	url_base=args[0];
-        }
+        
         
         /*populate db before launching the test, heroku rest the DB every time the web application restart*/
         popolateDB();
@@ -207,7 +209,7 @@ public class AssignmentClient {
        
         }
         
-        printResponseStatusJSON("R6 GET GET /person/{id}/{measureType}", measureError?"ERROR":"OK", rep, null);
+        printResponseStatusJSON("R6 GET /person/{id}/{measureType}", measureError?"ERROR":"OK", rep, null);
         
         /*R3.8*/
         Response measureResponse=makeRequest("person/"+id+"/"+storedMeasureType+"/"+storedMid, MediaType.APPLICATION_JSON);
@@ -256,9 +258,15 @@ public class AssignmentClient {
         
         Response getByDate=makeRequest("person/"+id+"/"+storedMeasureType+"?before=2016-11-23&after=2016-10-10", MediaType.APPLICATION_JSON);
         MeasureHistory req11=getByDate.readEntity(MeasureHistory.class);
-        if(req11.getMeasure()==null){
-        	req11.setMeasure(new ArrayList<Measure>());
-        }
+        if(req11!=null){
+		    if(req11.getMeasure()==null){
+		    	req11.setMeasure(new ArrayList<Measure>());
+		    }
+		}
+	    else{
+	    	req11=new MeasureHistory();
+	    	req11.setMeasure(new ArrayList<Measure>());
+	    }
         printResponseStatusJSON("R11 "+"person/"+id+"/"+storedMeasureType+"?before=2016-11-23&after=2016-10-10", req11.getMeasure().size()>1?"OK":"ERROR", getByDate, req11);
 	
         /*R3.12*/
@@ -422,7 +430,13 @@ public class AssignmentClient {
         
         Response getByDate=makeRequest("person/"+id+"/"+storedMeasureType+"?before=2016-11-23&after=2016-10-10", MediaType.APPLICATION_XML);
         MeasureHistory req11=getByDate.readEntity(MeasureHistory.class);
-        if(req11.getMeasure()==null){
+        if(req11!=null){
+	        if(req11.getMeasure()==null){
+	        	req11.setMeasure(new ArrayList<Measure>());
+	        }
+        }
+        else{
+        	req11=new MeasureHistory();
         	req11.setMeasure(new ArrayList<Measure>());
         }
         printResponseStatusXML("R11 "+"person/"+id+"/"+storedMeasureType+"?before=2016-11-23&after=2016-10-10", req11.getMeasure().size()>1?"OK":"ERROR", getByDate, req11);

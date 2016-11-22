@@ -14,3 +14,6 @@ ClientAssignment2/ivy/
 ClientAssignment2/.classpath
 ClientAssignment2/.gitignore
 ClientAssignment2/.project
+ClientAssignment2/client-server-json.log
+ClientAssignment2/client-server-xml.log
+
