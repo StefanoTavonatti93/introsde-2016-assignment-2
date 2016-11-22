@@ -207,6 +207,26 @@ public class AssignmentClient {
         
         printResponseStatusXML("3.10 PUT"+"person/"+id+"/"+storedMeasureType+"/"+storedMeasure.getMid(), newMeasure.getValue()==90?"OK":"ERROR", putMeasure, newMeasure);
         
+        /*R3.11*/
+        
+        
+        Response getByDate=makeRequest("person/"+id+"/"+storedMeasureType+"?before=2016-11-23&after=2016-10-10", MediaType.APPLICATION_XML);
+        MeasureHistory req11=getByDate.readEntity(MeasureHistory.class);
+        if(req11.getMeasure()==null){
+        	req11.setMeasure(new ArrayList<Measure>());
+        }
+        printResponseStatusXML("R11 "+"person/"+id+"/"+storedMeasureType+"?before=2016-11-23&after=2016-10-10", req11.getMeasure().size()>1?"OK":"ERROR", getByDate, req11);
+	
+        /*R3.12*/
+        Response getMinMax=service.path("person").queryParam("min", "2").queryParam("max", "90").queryParam("measureType", storedMeasure).request().get();//makeRequest("person?measureType="+storedMeasureType+"&min=2&max=90", MediaType.APPLICATION_XML);
+        System.out.println(""+getMinMax.getStatus()+" person?measureType="+storedMeasureType+"&min=2&max=90");
+        People req12=getMinMax.readEntity(People.class);
+        if(req12.getPerson()==null){
+        	req12.setPerson(new ArrayList<Person>());
+        }
+        printResponseStatusXML("R12 "+"person?measureType="+storedMeasureType+"&min=2&max=90", req12.getPerson().size()>1?"OK":"ERROR", getMinMax, req12);
+	
+	
 	}
 	
 	public static void main(String args[]){
@@ -231,7 +251,7 @@ public class AssignmentClient {
 				e.printStackTrace();
 			}
 		
-		//TODO LOG - return measure not person -
+		//TODO LOG - 
 	}
 	
 	private Response makeRequest(String url,String type){
