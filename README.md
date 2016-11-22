@@ -18,7 +18,7 @@ Stefano Tavonatti
 
 ##Compile and Run
 
-#####Compile the server
+###Compile the server
 In order to compile the server, type the following commands:
 
 ```shell
@@ -27,7 +27,7 @@ ant create.war
 ```
 The file **ServerAssignment2.war** will be created in the *ServerAssignment2* directory.
 
-#####Compile and run the client
+###Compile and run the client
 
 The url of my heroku application is: [https://ste-introsde-assignment-2.herokuapp.com](https://ste-introsde-assignment-2.herokuapp.com "")
 
