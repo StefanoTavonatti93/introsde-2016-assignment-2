@@ -69,7 +69,7 @@ public class AssignmentClient {
         /*R3.1*/
         Response peopleResponse=makeRequest("person", MediaType.APPLICATION_XML);//make call
         People people=peopleResponse.readEntity(People.class);//parse response
-        printResponseStatusXML("3.1",people.getPerson().size()>2?"OK":"ERROR", peopleResponse,people);//print status
+        printResponseStatusXML("R1 GET /person",people.getPerson().size()>2?"OK":"ERROR", peopleResponse,people);//print status
         
         /*R3.2*/
         int id=people.getPerson().size()>0?people.getPerson().get(0).getIdPerson():0;//id of the first person
@@ -81,13 +81,13 @@ public class AssignmentClient {
         	person1=person1R.readEntity(Person.class);
         	res="OK";
         }
-        printResponseStatusXML("3.2", "OK" , person1R, person1);
+        printResponseStatusXML("R2 GET "+"person/"+id, "OK" , person1R, person1);
         
         /*R3.3*/
         String name="roberto";
         person1.setFirstname(name);
         Response editName=service.path("person/"+id).request().accept(MediaType.APPLICATION_XML).put(Entity.entity(person1, MediaType.APPLICATION_XML));
-        printResponseStatusXML("3.3", person1.getFirstname().equals(name)?"OK":"ERROR", editName, editName.readEntity(Person.class));
+        printResponseStatusXML("R3 PUT "+"/person/"+id, person1.getFirstname().equals(name)?"OK":"ERROR", editName, editName.readEntity(Person.class));
         
         /*R3.4*/
         Person norris=new Person();
@@ -116,14 +116,15 @@ public class AssignmentClient {
         	idNorris=norrisResult.getIdPerson();
         }
         
-        printResponseStatusXML("3.4", norrisResult!=null?"OK":"ERROR", norrisResponse, norrisResult);
+        printResponseStatusXML("R4 POST /person", norrisResult!=null?"OK":"ERROR", norrisResponse, norrisResult);
         
         /*R3.5*/
         /*delete chuck norris*/
         Response deleteNorris=service.path("person/"+idNorris).request().accept(MediaType.APPLICATION_XML).delete();
+        printResponseStatusXML("R5 DELETE /person/"+idNorris, deleteNorris.getStatus()==200?"OK":"ERROR", deleteNorris, null);
         /*check if chuck norris has been deleted*/
         Response checkNorris=makeRequest("person/"+idNorris, MediaType.APPLICATION_XML);
-        printResponseStatusXML("3.5", checkNorris.getStatus()==404?"OK":"ERROR", checkNorris, null);
+        printResponseStatusXML("R1 GET /person/"+idNorris, checkNorris.getStatus()==404?"OK":"ERROR", checkNorris, null);
         
         /*R3.6*/
         
@@ -136,7 +137,7 @@ public class AssignmentClient {
         	measureTypes=mlist.getMeasureType();//save the measure array
         }
         
-        printResponseStatusXML("3.6", measureTypes.size()>2?"OK":"ERROR", measureTypeResponse, mlist);
+        printResponseStatusXML("R9 GET /measureTypes", measureTypes.size()>2?"OK":"ERROR", measureTypeResponse, mlist);
         
         /*R3.7*/
         
@@ -166,18 +167,18 @@ public class AssignmentClient {
        
         }
         
-        printResponseStatusXML("3.7", measureError?"ERROR":"OK", rep, null);
+        printResponseStatusXML("R6 GET GET /person/{id}/{measureType}", measureError?"ERROR":"OK", rep, null);
         
         /*R3.8*/
         Response measureResponse=makeRequest("person/"+id+"/"+storedMeasureType+"/"+storedMid, MediaType.APPLICATION_XML);
-        printResponseStatusXML("3.8", measureResponse.getStatus()==200?"OK":"ERROR", measureResponse, measureResponse.readEntity(Measure.class));
+        printResponseStatusXML("R7 person/"+id+"/"+storedMeasureType+"/"+storedMid, measureResponse.getStatus()==200?"OK":"ERROR", measureResponse, measureResponse.readEntity(Measure.class));
         
         /*R3.9*/
         //Reading the measure istory of first person
         measureResponse=makeRequest("person/"+id+"/"+storedMeasureType,MediaType.APPLICATION_XML);
         MeasureHistory storedMeasureHistory=measureResponse.readEntity(MeasureHistory.class);
         
-        printResponseStatusXML("3.9 GET person/"+id+"/"+storedMeasureType, "OK", measureResponse, storedMeasureHistory);
+        printResponseStatusXML("R6 GET person/"+id+"/"+storedMeasureType, "OK", measureResponse, storedMeasureHistory);
         
         
         Measure measure=new Measure();
@@ -195,12 +196,12 @@ public class AssignmentClient {
         
         Measure storedMeasure=adding.readEntity(Measure.class);
         
-        printResponseStatusXML("3.9 POST person/"+id+"/"+storedMeasureType, "OK", adding,storedMeasure );
+        printResponseStatusXML("R8 POST person/"+id+"/"+storedMeasureType, "OK", adding,storedMeasure );
         Response checkNewMeasure=makeRequest("person/"+id+"/"+storedMeasureType, MediaType.APPLICATION_XML);
         
         //check if the number of measure is increased
         MeasureHistory newMeasureHistory=checkNewMeasure.readEntity(MeasureHistory.class);
-        printResponseStatusXML("3.9 GET person/"+id+"/"+storedMeasureType, newMeasureHistory.getMeasure().size()>storedMeasureHistory.getMeasure().size()?"OK":"ERROR", checkNewMeasure, newMeasureHistory);
+        printResponseStatusXML("R6 GET person/"+id+"/"+storedMeasureType, newMeasureHistory.getMeasure().size()>storedMeasureHistory.getMeasure().size()?"OK":"ERROR", checkNewMeasure, newMeasureHistory);
         
         /*R3.10*/
         Measure updatedMeasure=new Measure();
@@ -208,7 +209,7 @@ public class AssignmentClient {
         Response putMeasure=service.path("person/"+id+"/"+storedMeasureType+"/"+storedMeasure.getMid()).request().put(Entity.entity(updatedMeasure, MediaType.APPLICATION_XML));
         Measure newMeasure=putMeasure.readEntity(Measure.class);
         
-        printResponseStatusXML("3.10 PUT"+"person/"+id+"/"+storedMeasureType+"/"+storedMeasure.getMid(), newMeasure.getValue()==90?"OK":"ERROR", putMeasure, newMeasure);
+        printResponseStatusXML("R10 PUT "+"person/"+id+"/"+storedMeasureType+"/"+storedMeasure.getMid(), newMeasure.getValue()==90?"OK":"ERROR", putMeasure, newMeasure);
         
         /*R3.11*/
         
@@ -233,6 +234,8 @@ public class AssignmentClient {
 	}
 	
 	public void popolateDB(){
+		makeRequest("person/", MediaType.APPLICATION_XML);
+		
 		Person p=new Person();
 		p.setFirstname("Paolo");
 		p.setLastname("Bitta");
@@ -296,7 +299,7 @@ public class AssignmentClient {
     }
 	
 	private void printResponseStatusXML(String reqNumber,String result,Response response,Object body){
-		System.out.println("Request: #"+reqNumber);
+		System.out.println("Request: #"+reqNumber+" Accept: "+MediaType.APPLICATION_XML+" Content-Type: "+MediaType.APPLICATION_XML);
 		System.out.println("=> Result: "+result);
 		System.out.println("=> HTTP STATUS: "+response.getStatus());
 		
