@@ -8,6 +8,11 @@ import javax.ws.rs.core.MediaType;
 
 import tavonatti.stefano.model.variants.MeasureTypeList;
 
+/**
+ * this call return all the measure type aailable in the server
+ * @author stefano
+ *
+ */
 @Path("/measureTypes")
 public class senMeasureTypes {
 	

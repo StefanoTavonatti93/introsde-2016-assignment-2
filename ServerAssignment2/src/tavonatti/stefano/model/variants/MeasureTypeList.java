@@ -9,7 +9,7 @@ import tavonatti.stefano.utilities.MeasureTypes;
 
 @XmlRootElement(name="measureTypes")
 /**
- * this class is used for the call that mus returns all the measure type available( weight, eight, etc..)
+ * this class is used for the call that must returns all the measure type available( weight, eight, etc..)
  * 
  * @author stefano
  *
