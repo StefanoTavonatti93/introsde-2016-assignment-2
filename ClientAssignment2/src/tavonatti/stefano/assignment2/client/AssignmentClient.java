@@ -65,6 +65,8 @@ public class AssignmentClient {
 	private PrintWriter outXML=null;;
 	
 	public AssignmentClient(String args[]){
+		
+		System.out.println("SERVER URL: "+url_base+"\n\n");
 		clientConfig = new ClientConfig();
         client = ClientBuilder.newClient(clientConfig);
         service = client.target(getBaseURI());

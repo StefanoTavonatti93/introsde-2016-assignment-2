@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="ClientAssignment2" default="compile" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+
+	<!-- PART 1: Ivy properties, download, installation and configuration -->
+	<property name="ivy.install.version" value="2.4.0-rc1" />
+	<property name="ivy.jar.dir" value="${basedir}/ivy" />
+	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
+
+	<!-- this targe will donwload ivy.jar if its inot in the "ivy" folder yet -->
+	<target name="download-ivy" unless="skip.download">
+		<mkdir dir="${ivy.jar.dir}"/>
+		<!-- download Ivy from web site so that it can be used even without any special installation -->
+		<echo message="installing ivy..."/>
+		<get src="http://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" dest="${ivy.jar.file}" usetimestamp="true"/>
+	</target>
+
+	
+	<target name="install-ivy" depends="download-ivy" description="--> install ivy">
+		
+		<path id="ivy.lib.path">
+			<fileset dir="${ivy.jar.dir}" includes="*.jar"/>
+		</path>
+		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+	</target>
+
+	<!-- PART 2: General properties definitions -->
+	<property name="build.dir" value="build_ant" />
+	<property name="src.dir" value="src" />
+	<property name="lib.dir" value="lib" />
+	<property name="xjc.package" value="generated" />
+
+
+	<!-- =================================
+	          target: resolve downloads the dependencies to your lib folder
+	         ================================= -->
+	<target name="resolve" depends="install-ivy" description="--> retrieve dependencies with ivy">
+		<ivy:retrieve pattern="${lib.dir}/[artifact]-[type]-[revision].[ext]"/>
+	</target>
+
+
+	<!-- paths where ivy libraries will be downloaded, use them as classpathref in your compilation and running tasks  -->
+	<path id="lib.path.id">
+		<fileset dir="${lib.dir}" />
+	</path>
+
+
+	<path id="run.path.id">
+		<path refid="lib.path.id" />
+		<fileset dir="${build.dir}">
+			<include name="*.class" />
+			<include name="**/*.class" />
+			<exclude name="**/*Test*" />
+		</fileset>
+	</path>
+
+	<!-- PART 3: compilation and execution targets for this session -->
+	<target name="init" depends="install-ivy, resolve">
+		<echo message="Init has been called" />
+		<mkdir dir="${build.dir}" />
+		<echo message="${build.dir} has been created" />
+	</target>
+
+	<target name="clean">
+		<echo message="Clean has been called" />
+		<delete dir="${build.dir}" />
+		<echo message="${build.dir} has been deleted" />
+	</target>
+
+
+	<target name="compile" depends="compile.model">
+		<echo message="Compile target has been called" />
+		<javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="lib.path.id" includeAntRuntime="false">
+		</javac>
+		<copy todir="${build.dir}" overwrite="true">
+			<fileset dir="${src.dir}">
+				<include name="*.xml" />
+			</fileset>
+		</copy>
+	</target>
+    
+    <target name="compile.model" depends="init">
+		<echo message="Compile target has been called" />
+		<javac srcdir="../ServerAssignment2/src/" destdir="${build.dir}" classpathref="lib.path.id" includeAntRuntime="false">
+		</javac>
+		<copy todir="${build.dir}" overwrite="true">
+			<fileset dir="${src.dir}">
+				<include name="*.xml" />
+			</fileset>
+		</copy>
+	</target>
+
+
+	<target name="execute.client" depends="compile">
+		<echo message="Executing client"/>
+		<java classname="tavonatti.stefano.assignment2.client.AssignmentClient" classpath="${build.dir}">
+			<classpath>
+				<fileset dir="${lib.dir}">
+					<include name="**/*.jar" />
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+		</java>
+	</target>
+
+</project> 

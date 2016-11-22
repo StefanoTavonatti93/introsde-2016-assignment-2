@@ -1,0 +1,600 @@
+Request: #R1 GET /person Accept: application/xml Content-Type: application/xml
+=> Result: OK
+=> HTTP STATUS: 200
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<people>
+    <person>
+        <firstname>roberto</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>1</idPerson>
+        <lastname>Bitta</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Donato</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>4</idPerson>
+        <lastname>Cavallo</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Franco</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>6</idPerson>
+        <lastname>Bollo</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Paolo</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>14</idPerson>
+        <lastname>Bitta</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Donato</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>17</idPerson>
+        <lastname>Cavallo</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Franco</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>19</idPerson>
+        <lastname>Bollo</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Paolo</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>27</idPerson>
+        <lastname>Bitta</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Donato</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>30</idPerson>
+        <lastname>Cavallo</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Franco</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>32</idPerson>
+        <lastname>Bollo</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Paolo</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>40</idPerson>
+        <lastname>Bitta</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Donato</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>43</idPerson>
+        <lastname>Cavallo</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Franco</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>45</idPerson>
+        <lastname>Bollo</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Paolo</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>53</idPerson>
+        <lastname>Bitta</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Donato</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>56</idPerson>
+        <lastname>Cavallo</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Franco</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>58</idPerson>
+        <lastname>Bollo</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Paolo</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>66</idPerson>
+        <lastname>Bitta</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Donato</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>69</idPerson>
+        <lastname>Cavallo</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Franco</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>71</idPerson>
+        <lastname>Bollo</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Paolo</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>79</idPerson>
+        <lastname>Bitta</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Donato</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>82</idPerson>
+        <lastname>Cavallo</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Franco</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>84</idPerson>
+        <lastname>Bollo</lastname>
+    </person>
+</people>
+
+Request: #R2 GET person/1 Accept: application/xml Content-Type: application/xml
+=> Result: OK
+=> HTTP STATUS: 200
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<person>
+    <firstname>roberto</firstname>
+    <healthProfile>
+        <height>0.0</height>
+        <weight>0.0</weight>
+    </healthProfile>
+    <idPerson>1</idPerson>
+    <lastname>Bitta</lastname>
+</person>
+
+Request: #R3 PUT /person/1 Accept: application/xml Content-Type: application/xml
+=> Result: OK
+=> HTTP STATUS: 200
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<person>
+    <firstname>roberto</firstname>
+    <healthProfile>
+        <height>0.0</height>
+        <weight>0.0</weight>
+    </healthProfile>
+    <idPerson>1</idPerson>
+    <lastname>Bitta</lastname>
+</person>
+
+Request: #R4 POST /person Accept: application/xml Content-Type: application/xml
+=> Result: OK
+=> HTTP STATUS: 200
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<person>
+    <birthdate>1945-01-01T00:00:00+01:00</birthdate>
+    <firstname>Chuck</firstname>
+    <healthProfile>
+        <height>0.0</height>
+        <weight>0.0</weight>
+    </healthProfile>
+    <idPerson>86</idPerson>
+    <lastname>Norris</lastname>
+</person>
+
+Request: #R5 DELETE /person/86 Accept: application/xml Content-Type: application/xml
+=> Result: OK
+=> HTTP STATUS: 200
+Request: #R1 GET /person/86 Accept: application/xml Content-Type: application/xml
+=> Result: OK
+=> HTTP STATUS: 404
+Request: #R9 GET /measureTypes Accept: application/xml Content-Type: application/xml
+=> Result: OK
+=> HTTP STATUS: 200
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<measureTypes>
+    <measureType>height</measureType>
+    <measureType>weight</measureType>
+    <measureType>steps</measureType>
+    <measureType>bloodpressure</measureType>
+</measureTypes>
+
+Request: #R6 GET GET /person/{id}/{measureType} Accept: application/xml Content-Type: application/xml
+=> Result: OK
+=> HTTP STATUS: 200
+Request: #R7 person/1/weight/3 Accept: application/xml Content-Type: application/xml
+=> Result: OK
+=> HTTP STATUS: 200
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<measure>
+    <created>2016-11-22T16:01:04.208+01:00</created>
+    <measureType>weight</measureType>
+    <mid>3</mid>
+    <value>59.0</value>
+</measure>
+
+Request: #R6 GET person/1/weight Accept: application/xml Content-Type: application/xml
+=> Result: OK
+=> HTTP STATUS: 200
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<measureHistory>
+    <measure>
+        <created>2016-11-22T16:01:04.208+01:00</created>
+        <measureType>weight</measureType>
+        <mid>3</mid>
+        <value>59.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T16:01:06.930+01:00</created>
+        <measureType>weight</measureType>
+        <mid>10</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T16:01:11.396+01:00</created>
+        <measureType>weight</measureType>
+        <mid>13</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T16:04:28.543+01:00</created>
+        <measureType>weight</measureType>
+        <mid>23</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T16:04:31.823+01:00</created>
+        <measureType>weight</measureType>
+        <mid>26</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T16:18:11.549+01:00</created>
+        <measureType>weight</measureType>
+        <mid>36</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T16:18:15.295+01:00</created>
+        <measureType>weight</measureType>
+        <mid>39</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T16:40:07.783+01:00</created>
+        <measureType>weight</measureType>
+        <mid>49</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T16:40:09.938+01:00</created>
+        <measureType>weight</measureType>
+        <mid>52</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T16:48:45.110+01:00</created>
+        <measureType>weight</measureType>
+        <mid>62</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T16:48:47.011+01:00</created>
+        <measureType>weight</measureType>
+        <mid>65</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T17:10:27.541+01:00</created>
+        <measureType>weight</measureType>
+        <mid>75</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T17:10:30.262+01:00</created>
+        <measureType>weight</measureType>
+        <mid>78</mid>
+        <value>90.0</value>
+    </measure>
+</measureHistory>
+
+Request: #R8 POST person/1/weight Accept: application/xml Content-Type: application/xml
+=> Result: OK
+=> HTTP STATUS: 200
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<measure>
+    <created>2016-11-22T17:10:58.318+01:00</created>
+    <measureType>weight</measureType>
+    <mid>88</mid>
+    <value>72.0</value>
+</measure>
+
+Request: #R6 GET person/1/weight Accept: application/xml Content-Type: application/xml
+=> Result: OK
+=> HTTP STATUS: 200
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<measureHistory>
+    <measure>
+        <created>2016-11-22T16:01:04.208+01:00</created>
+        <measureType>weight</measureType>
+        <mid>3</mid>
+        <value>59.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T16:01:06.930+01:00</created>
+        <measureType>weight</measureType>
+        <mid>10</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T16:01:11.396+01:00</created>
+        <measureType>weight</measureType>
+        <mid>13</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T16:04:28.543+01:00</created>
+        <measureType>weight</measureType>
+        <mid>23</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T16:04:31.823+01:00</created>
+        <measureType>weight</measureType>
+        <mid>26</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T16:18:11.549+01:00</created>
+        <measureType>weight</measureType>
+        <mid>36</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T16:18:15.295+01:00</created>
+        <measureType>weight</measureType>
+        <mid>39</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T16:40:07.783+01:00</created>
+        <measureType>weight</measureType>
+        <mid>49</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T16:40:09.938+01:00</created>
+        <measureType>weight</measureType>
+        <mid>52</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T16:48:45.110+01:00</created>
+        <measureType>weight</measureType>
+        <mid>62</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T16:48:47.011+01:00</created>
+        <measureType>weight</measureType>
+        <mid>65</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T17:10:27.541+01:00</created>
+        <measureType>weight</measureType>
+        <mid>75</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T17:10:30.262+01:00</created>
+        <measureType>weight</measureType>
+        <mid>78</mid>
+        <value>90.0</value>
+    </measure>
+    <measure>
+        <created>2016-11-22T17:10:58.318+01:00</created>
+        <measureType>weight</measureType>
+        <mid>88</mid>
+        <value>72.0</value>
+    </measure>
+</measureHistory>
+
+Request: #R10 PUT person/1/weight/88 Accept: application/xml Content-Type: application/xml
+=> Result: OK
+=> HTTP STATUS: 200
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<measure>
+    <measureType>weight</measureType>
+    <mid>88</mid>
+    <value>90.0</value>
+</measure>
+
+Request: #R11 person/1/weight?before=2016-11-23&after=2016-10-10 Accept: application/xml Content-Type: application/xml
+=> Result: ERROR
+=> HTTP STATUS: 200
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<measureHistory/>
+
+Request: #R12 person?measureType=weight&min=2&max=90 Accept: application/xml Content-Type: application/xml
+=> Result: OK
+=> HTTP STATUS: 200
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<people>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Donato</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>4</idPerson>
+        <lastname>Cavallo</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Paolo</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>14</idPerson>
+        <lastname>Bitta</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Franco</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>19</idPerson>
+        <lastname>Bollo</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Donato</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>30</idPerson>
+        <lastname>Cavallo</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Paolo</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>40</idPerson>
+        <lastname>Bitta</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Franco</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>45</idPerson>
+        <lastname>Bollo</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Donato</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>56</idPerson>
+        <lastname>Cavallo</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Paolo</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>66</idPerson>
+        <lastname>Bitta</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Franco</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>71</idPerson>
+        <lastname>Bollo</lastname>
+    </person>
+    <person>
+        <birthdate>1987-10-01T00:00:00+01:00</birthdate>
+        <firstname>Donato</firstname>
+        <healthProfile>
+            <height>0.0</height>
+            <weight>0.0</weight>
+        </healthProfile>
+        <idPerson>82</idPerson>
+        <lastname>Cavallo</lastname>
+    </person>
+</people>
+

@@ -33,7 +33,17 @@
         <dependency org="org.projectlombok" name="lombok" rev="1.16.10"/>
         <dependency org="org.glassfish.jersey.media" name="jersey-media-json-jackson" rev="2.24"/>
         
-                <dependency org="org.glassfish.jersey.core" name="jersey-client" rev="2.24"/>
+         <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-moxy -->
+<dependency org="org.glassfish.jersey.media" name="jersey-media-moxy" rev="2.24"/>
+         <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-jaxb -->
+<dependency org="org.glassfish.jersey.media" name="jersey-media-jaxb" rev="2.16"/>
+         <!-- https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl -->
+<dependency org="com.sun.xml.bind" name="jaxb-impl" rev="2.2.11"/>
+         
+        <dependency org="org.projectlombok" name="lombok" rev="1.16.10"/>
+        <dependency org="org.glassfish.jersey.core" name="jersey-client" rev="2.24"/>
+        <dependency org="org.glassfish.jersey.media" name="jersey-media-json-jackson" rev="2.24"/>
+        <dependency org="org.glassfish.jersey.media" name="jersey-media-jaxb" rev="2.24"/>
         
            <!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency org="junit" name="junit" rev="4.12"/>

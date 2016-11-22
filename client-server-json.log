@@ -1,0 +1,601 @@
+Request: #R1 GET /person Accept: application/json Content-Type: application/json
+=> Result: OK
+=> HTTP STATUS: 200
+{
+  "person" : [ {
+    "idPerson" : 1,
+    "firstname" : "roberto",
+    "lastname" : "Bitta",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 4,
+    "firstname" : "Donato",
+    "lastname" : "Cavallo",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 6,
+    "firstname" : "Franco",
+    "lastname" : "Bollo",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 14,
+    "firstname" : "Paolo",
+    "lastname" : "Bitta",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 17,
+    "firstname" : "Donato",
+    "lastname" : "Cavallo",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 19,
+    "firstname" : "Franco",
+    "lastname" : "Bollo",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 27,
+    "firstname" : "Paolo",
+    "lastname" : "Bitta",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 30,
+    "firstname" : "Donato",
+    "lastname" : "Cavallo",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 32,
+    "firstname" : "Franco",
+    "lastname" : "Bollo",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 40,
+    "firstname" : "Paolo",
+    "lastname" : "Bitta",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 43,
+    "firstname" : "Donato",
+    "lastname" : "Cavallo",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 45,
+    "firstname" : "Franco",
+    "lastname" : "Bollo",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 53,
+    "firstname" : "Paolo",
+    "lastname" : "Bitta",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 56,
+    "firstname" : "Donato",
+    "lastname" : "Cavallo",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 58,
+    "firstname" : "Franco",
+    "lastname" : "Bollo",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 66,
+    "firstname" : "Paolo",
+    "lastname" : "Bitta",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 69,
+    "firstname" : "Donato",
+    "lastname" : "Cavallo",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 71,
+    "firstname" : "Franco",
+    "lastname" : "Bollo",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 79,
+    "firstname" : "Paolo",
+    "lastname" : "Bitta",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 82,
+    "firstname" : "Donato",
+    "lastname" : "Cavallo",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 84,
+    "firstname" : "Franco",
+    "lastname" : "Bollo",
+    "birthdate" : null,
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  } ]
+}
+Request: #R2 GET person/1 Accept: application/json Content-Type: application/json
+=> Result: OK
+=> HTTP STATUS: 200
+{
+  "idPerson" : 1,
+  "firstname" : "roberto",
+  "lastname" : "Bitta",
+  "birthdate" : null,
+  "healthProfile" : {
+    "height" : 0.0,
+    "weight" : 0.0,
+    "measureType" : [ ]
+  }
+}
+Request: #R3 PUT /person/1 Accept: application/json Content-Type: application/json
+=> Result: OK
+=> HTTP STATUS: 200
+{
+  "idPerson" : 1,
+  "firstname" : "roberto",
+  "lastname" : "Bitta",
+  "birthdate" : null,
+  "healthProfile" : {
+    "height" : 0.0,
+    "weight" : 0.0,
+    "measureType" : [ ]
+  }
+}
+Request: #R4 POST /person Accept: application/json Content-Type: application/json
+=> Result: OK
+=> HTTP STATUS: 200
+{
+  "idPerson" : 89,
+  "firstname" : "Chuck",
+  "lastname" : "Norris",
+  "birthdate" : null,
+  "healthProfile" : {
+    "height" : 0.0,
+    "weight" : 0.0,
+    "measureType" : [ ]
+  }
+}
+Request: #R5 DELETE /person/89 Accept: application/json Content-Type: application/json
+=> Result: OK
+=> HTTP STATUS: 200
+Request: #R1 GET /person/89 Accept: application/json Content-Type: application/json
+=> Result: OK
+=> HTTP STATUS: 404
+Request: #R9 GET /measureTypes Accept: application/json Content-Type: application/json
+=> Result: OK
+=> HTTP STATUS: 200
+{
+  "measureType" : [ "height", "weight", "steps", "bloodpressure" ]
+}
+Request: #R6 GET GET /person/{id}/{measureType} Accept: application/json Content-Type: application/json
+=> Result: OK
+=> HTTP STATUS: 200
+Request: #R7 person/1/weight/3 Accept: application/json Content-Type: application/json
+=> Result: OK
+=> HTTP STATUS: 200
+{
+  "mid" : 3,
+  "value" : 59.0,
+  "measureType" : "weight",
+  "created" : null,
+  "healthProfile" : null
+}
+Request: #R6 GET person/1/weight Accept: application/json Content-Type: application/json
+=> Result: OK
+=> HTTP STATUS: 200
+{
+  "measure" : [ {
+    "mid" : 3,
+    "value" : 59.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 10,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 13,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 23,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 26,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 36,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 39,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 49,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 52,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 62,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 65,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 75,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 78,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 88,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  } ]
+}
+Request: #R8 POST person/1/weight Accept: application/json Content-Type: application/json
+=> Result: OK
+=> HTTP STATUS: 200
+{
+  "mid" : 91,
+  "value" : 72.0,
+  "measureType" : "weight",
+  "created" : null,
+  "healthProfile" : null
+}
+Request: #R6 GET person/1/weight Accept: application/json Content-Type: application/json
+=> Result: OK
+=> HTTP STATUS: 200
+{
+  "measure" : [ {
+    "mid" : 3,
+    "value" : 59.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 10,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 13,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 23,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 26,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 36,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 39,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 49,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 52,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 62,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 65,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 75,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 78,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 88,
+    "value" : 90.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  }, {
+    "mid" : 91,
+    "value" : 72.0,
+    "measureType" : "weight",
+    "created" : null,
+    "healthProfile" : null
+  } ]
+}
+Request: #R10 PUT person/1/weight/91 Accept: application/json Content-Type: application/json
+=> Result: OK
+=> HTTP STATUS: 200
+{
+  "mid" : 91,
+  "value" : 90.0,
+  "measureType" : "weight",
+  "created" : null,
+  "healthProfile" : null
+}
+Request: #R11 person/1/weight?before=2016-11-23&after=2016-10-10 Accept: application/json Content-Type: application/json
+=> Result: ERROR
+=> HTTP STATUS: 200
+{
+  "measure" : [ ]
+}
+Request: #R12 person?measureType=weight&min=2&max=90 Accept: application/json Content-Type: application/json
+=> Result: OK
+=> HTTP STATUS: 200
+{
+  "person" : [ {
+    "idPerson" : 4,
+    "firstname" : "Donato",
+    "lastname" : "Cavallo",
+    "birthdate" : "1987-09-30",
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 14,
+    "firstname" : "Paolo",
+    "lastname" : "Bitta",
+    "birthdate" : "1987-09-30",
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 19,
+    "firstname" : "Franco",
+    "lastname" : "Bollo",
+    "birthdate" : "1987-09-30",
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 30,
+    "firstname" : "Donato",
+    "lastname" : "Cavallo",
+    "birthdate" : "1987-09-30",
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 40,
+    "firstname" : "Paolo",
+    "lastname" : "Bitta",
+    "birthdate" : "1987-09-30",
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 45,
+    "firstname" : "Franco",
+    "lastname" : "Bollo",
+    "birthdate" : "1987-09-30",
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 56,
+    "firstname" : "Donato",
+    "lastname" : "Cavallo",
+    "birthdate" : "1987-09-30",
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 66,
+    "firstname" : "Paolo",
+    "lastname" : "Bitta",
+    "birthdate" : "1987-09-30",
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 71,
+    "firstname" : "Franco",
+    "lastname" : "Bollo",
+    "birthdate" : "1987-09-30",
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  }, {
+    "idPerson" : 82,
+    "firstname" : "Donato",
+    "lastname" : "Cavallo",
+    "birthdate" : "1987-09-30",
+    "healthProfile" : {
+      "height" : 0.0,
+      "weight" : 0.0,
+      "measureType" : [ ]
+    }
+  } ]
+}
