@@ -34,8 +34,6 @@ public class Person implements Serializable {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date birthdate;
 	
-	//@XmlElementWrapper(name="healthProfile")
-	//@OneToOne(mappedBy="person", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private HealthProfile healthProfile;
 

@@ -23,10 +23,6 @@ public class Measure {
 	@Column(name="value")
 	private double value;
 	
-	//@Column(name="measuretype")
-	//private String measureType;
-	
-	//@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.EAGER)
 	@Column(name="TYPE")
 	private String measureType;
 	

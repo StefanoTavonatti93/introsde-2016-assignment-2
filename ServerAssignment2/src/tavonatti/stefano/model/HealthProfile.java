@@ -71,6 +71,7 @@ public class HealthProfile implements Serializable {
 		this.measureList = measureList;
 	}
 
+	/*calculate the height of the person based on the last height measure.*/
 	public double getHeight() {
 		
 		if(measureList==null){
@@ -100,6 +101,7 @@ public class HealthProfile implements Serializable {
 		this.height = height;
 	}
 
+	/*calculate the weight of the person based on the last height measure.*/
 	public double getWeight() {
 		
 		if(measureList==null){
