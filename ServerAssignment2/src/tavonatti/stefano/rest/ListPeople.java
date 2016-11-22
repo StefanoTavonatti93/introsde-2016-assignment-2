@@ -303,7 +303,15 @@ public class ListPeople {
     	
     	p=Person.updatePerson(p);
     	
-    	return throw200(p);
+    	ArrayList<Measure> measureNew=new ArrayList<>( p.getHealthProfile().getMeasureList());
+    	
+    	Measure m=new Measure();
+    	
+    	if(measureNew.size()>0){
+    		m=measureNew.get(measureNew.size()-1);
+    	}
+    	
+    	return throw200(m);
     }
     
     
