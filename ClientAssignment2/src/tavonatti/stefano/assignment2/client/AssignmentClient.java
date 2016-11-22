@@ -1,7 +1,11 @@
 package tavonatti.stefano.assignment2.client;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.URI;
 import java.text.DateFormat;
@@ -57,18 +61,47 @@ public class AssignmentClient {
 	private Client client;
 	private WebTarget service;
 	private DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+	private static String url_base="https://ste-introsde-assignment-2.herokuapp.com";
+	private PrintWriter outJSON=null;
+	private PrintWriter outXML=null;;
 	
 	public AssignmentClient(String args[]){
 		clientConfig = new ClientConfig();
         client = ClientBuilder.newClient(clientConfig);
         service = client.target(getBaseURI());
 		//System.out.println(service.path("person").request().accept(MediaType.APPLICATION_XML).get().readEntity(String.class));
+        if(args.length>0){
+        	url_base=args[0];
+        }
         
+        /*populate db before launching the test, heroku rest the DB every time the web application restart*/
         popolateDB();
         
+        /*inizializa outputFile*/
+        
+        try {
+			outXML=new PrintWriter(new FileOutputStream(new File("client-server-xml.log")));
+			outJSON=new PrintWriter(new FileOutputStream(new File("client-server-json.log")));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        /*xml tests*/
         xmlRequests();
+        /*json test*/
         jsonRequests();
-	
+        
+        /*close the files*/
+        if(outXML!=null){
+	        outXML.flush();
+	        outXML.close();
+        }
+        
+        if(outJSON!=null){
+	        outJSON.flush();
+	        outJSON.close();
+        }
 	
 	}
 	private void jsonRequests() {
@@ -465,10 +498,11 @@ public class AssignmentClient {
 	
 	private static URI getBaseURI() {
         return UriBuilder.fromUri(
-                "https://ste-introsde-assignment-2.herokuapp.com").build();
+                url_base).build();
     }
 	
 	private void printResponseStatusXML(String reqNumber,String result,Response response,Object body){
+		/*log on console*/
 		System.out.println("Request: #"+reqNumber+" Accept: "+MediaType.APPLICATION_XML+" Content-Type: "+MediaType.APPLICATION_XML);
 		System.out.println("=> Result: "+result);
 		System.out.println("=> HTTP STATUS: "+response.getStatus());
@@ -481,7 +515,22 @@ public class AssignmentClient {
 				e.printStackTrace();
 			}
 		
-		//TODO LOG - 
+		/*log into the file*/ 
+		
+		if(outXML==null)
+			return;
+		
+		outXML.println("Request: #"+reqNumber+" Accept: "+MediaType.APPLICATION_XML+" Content-Type: "+MediaType.APPLICATION_XML);
+		outXML.println("=> Result: "+result);
+		outXML.println("=> HTTP STATUS: "+response.getStatus());
+		
+		if(body!=null)
+			try {
+				outXML.println(MarshallingUtilities.marshallXMLToString(body.getClass(), body));
+			} catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 	
 	private void printResponseStatusJSON(String reqNumber,String result,Response response,Object body){
@@ -497,7 +546,21 @@ public class AssignmentClient {
 				e.printStackTrace();
 			}
 		
-		//TODO LOG - 
+		/*log into the file*/
+		if(outJSON==null)
+			return ;
+		
+		outJSON.println("Request: #"+reqNumber+" Accept: "+MediaType.APPLICATION_JSON+" Content-Type: "+MediaType.APPLICATION_JSON);
+		outJSON.println("=> Result: "+result);
+		outJSON.println("=> HTTP STATUS: "+response.getStatus());
+		
+		if(body!=null)
+			try {
+				outJSON.println(MarshallingUtilities.marshallJSONTOString(body));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 	
 	private Response makeRequest(String url,String type){
