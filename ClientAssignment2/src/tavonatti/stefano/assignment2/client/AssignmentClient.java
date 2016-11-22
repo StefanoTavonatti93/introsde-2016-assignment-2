@@ -39,7 +39,6 @@ import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
-import org.apache.xmlbeans.impl.xb.xsdschema.FieldDocument.Field.Xpath;
 import org.glassfish.jersey.client.ClientConfig;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
