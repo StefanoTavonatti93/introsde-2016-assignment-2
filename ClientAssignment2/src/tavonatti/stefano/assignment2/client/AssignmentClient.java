@@ -49,6 +49,7 @@ import tavonatti.stefano.model.variants.MeasureHistory;
 import tavonatti.stefano.model.variants.MeasureType;
 import tavonatti.stefano.model.variants.MeasureTypeList;
 import tavonatti.stefano.utilities.MarshallingUtilities;
+import tavonatti.stefano.utilities.MeasureTypes;
 
 public class AssignmentClient {
 	
@@ -62,6 +63,8 @@ public class AssignmentClient {
         client = ClientBuilder.newClient(clientConfig);
         service = client.target(getBaseURI());
 		//System.out.println(service.path("person").request().accept(MediaType.APPLICATION_XML).get().readEntity(String.class));
+        
+        popolateDB();
         
         /*R3.1*/
         Response peopleResponse=makeRequest("person", MediaType.APPLICATION_XML);//make call
@@ -227,6 +230,60 @@ public class AssignmentClient {
         printResponseStatusXML("R12 "+"person?measureType="+storedMeasureType+"&min=2&max=90", req12.getPerson().size()>1?"OK":"ERROR", getMinMax, req12);
 	
 	
+	}
+	
+	public void popolateDB(){
+		Person p=new Person();
+		p.setFirstname("Paolo");
+		p.setLastname("Bitta");
+		HealthProfile hp=new HealthProfile();
+		hp.setHeight(150);
+		hp.setWeight(59);
+		Measure m=new Measure();
+		m.setMeasureType(MeasureTypes.weight.toString());
+		m.setValue(59);
+		try {
+			p.setBirthdate(format.parse("1987-10-01"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		p.setHealthProfile(hp);
+		Response r=service.path("/person").request().accept(MediaType.APPLICATION_XML).post(Entity.entity(p, MediaType.APPLICATION_XML_TYPE));
+		Person bitta=r.readEntity(Person.class);
+		Response r2=service.path("/person/"+bitta.getIdPerson()+"/weight").request().accept(MediaType.APPLICATION_XML).post(Entity.entity(m, MediaType.APPLICATION_XML_TYPE));
+		
+		
+		p=new Person();
+		p.setFirstname("Donato");
+		p.setLastname("Cavallo");
+		hp=new HealthProfile();
+		
+		try {
+			p.setBirthdate(format.parse("1987-10-01"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		p.setHealthProfile(hp);
+		service.path("/person").request().accept(MediaType.APPLICATION_XML).post(Entity.entity(p, MediaType.APPLICATION_XML_TYPE));
+		
+		
+		p=new Person();
+		p.setFirstname("Franco");
+		p.setLastname("Bollo");
+		hp=new HealthProfile();
+		hp.setHeight(150);
+		hp.setWeight(59);
+		try {
+			p.setBirthdate(format.parse("1987-10-01"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		p.setHealthProfile(hp);
+		
+		service.path("/person").request().accept(MediaType.APPLICATION_XML).post(Entity.entity(p, MediaType.APPLICATION_XML_TYPE));
 	}
 	
 	public static void main(String args[]){

@@ -10,14 +10,15 @@
             <!-- the jdbc driver we will use to connect to the database 
                  change it depending of what database you use -->
             <!-- connecting to an postgress database-->
-            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-            <property name="javax.persistence.jdbc.user" value="ronqkncssdpstw" />
-      		<property name="javax.persistence.jdbc.password" value="0MWpYe2AwIZNT0SPLcb9P6wCTo" />
+            <!--<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />-->
+            <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />		
+            <!--<property name="javax.persistence.jdbc.user" value="ronqkncssdpstw" />-->
+      		<!--<property name="javax.persistence.jdbc.password" value="0MWpYe2AwIZNT0SPLcb9P6wCTo" />-->
             <!--connection url for the db-->
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://ec2-79-125-110-211.eu-west-1.compute.amazonaws.com/dfiqni5ilit1md" />
+           
             <!-- the last part of the url is the path to the sqlite file of the db, in this case it should be
                  on the root folder of the project -->
-            <!-- <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:lifecoachDB.sqlite" />-->
+            <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:lifecoachDB.sqlite" />
             <!-- set it to ALL to see all the JPA related debugging information --> 
             <property name="eclipselink.logging.level" value="INFO" />
             <!-- we will use this to automatically add elements to our database if we modify the Java model -->
